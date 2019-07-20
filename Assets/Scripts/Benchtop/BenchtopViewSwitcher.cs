@@ -15,9 +15,16 @@ public class BenchtopViewSwitcher : MonoBehaviour
         game = Game.Instance;
 
         game.OnModelViewChange += OnModelViewChange;
+        game.OnProstateChange += OnProstateChange;
 
         ShowSkin();
 	}
+
+    private void OnProstateChange(ProstateType prostate)
+    {
+        Debug.Log(prostate.ToString());
+        anatomyGroup.GetComponent<GroupAnatomy>().ShowProstate(prostate.ToString());
+    }
 
     private void OnModelViewChange(ModelView modelView)
     {

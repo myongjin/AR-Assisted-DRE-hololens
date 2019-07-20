@@ -9,4 +9,9 @@ public class ModelViewSelector : MonoBehaviour
     {
         Game.Instance.ModelView = (ModelView)view;
     }
+
+    public void SelectProstate(int prostate)
+    {
+        Game.Instance.Prostate = (ProstateType)prostate;
+    }
 }

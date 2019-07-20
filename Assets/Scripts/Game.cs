@@ -17,13 +17,25 @@ public enum ModelView
     Anatomy
 }
 
+public enum ProstateType
+{
+    Normal,
+    UnilateralBenign,
+    BilateralBenign,
+    UnilateralCarcinoma,
+    BilateralCarcinoma
+}
+
 public class Game : Singleton<Game>
 {
     public event OnGameStageChangeDelegate OnGameStageChange;
-    public delegate void OnGameStageChangeDelegate(GameStage newVal);
+    public delegate void OnGameStageChangeDelegate(GameStage gameStage);
 
     public event OnModelViewChangeDelegate OnModelViewChange;
-    public delegate void OnModelViewChangeDelegate(ModelView newVal);
+    public delegate void OnModelViewChangeDelegate(ModelView modelView);
+
+    public event OnProstateChangeDelegate OnProstateChange;
+    public delegate void OnProstateChangeDelegate(ProstateType prostate);
 
     [SerializeField]
     private GameStage _gameStage = GameStage.FindTransmitter;
@@ -59,6 +71,23 @@ public class Game : Singleton<Game>
         }
     }
 
+    [SerializeField]
+    private ProstateType _prostate = ProstateType.Normal;
+    public ProstateType Prostate
+    {
+        get
+        {
+            return _prostate;
+        }
+        set
+        {
+            if (_prostate == value) return;
+            _prostate = value;
+            if (OnProstateChange != null)
+                OnProstateChange(_prostate);
+        }
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -70,7 +99,7 @@ public class Game : Singleton<Game>
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            GameStage = (GameStage)(((int)GameStage + 1) % 3);
+            Prostate = (ProstateType)(((int)Prostate + 1) % 3);
         }
     }
 }
