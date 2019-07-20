@@ -1863,6 +1863,7 @@ GameObject:
   m_Component:
   - component: {fileID: 232416223}
   - component: {fileID: 232416224}
+  - component: {fileID: 232416225}
   m_Layer: 0
   m_Name: TargetAligned
   m_TagString: Untagged
@@ -1903,6 +1904,17 @@ MonoBehaviour:
   manipulationMode: 5
   rotationConstraint: 2
   enableOneHandMovement: 1
+--- !u!114 &232416225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 232416222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f66adceee98b64fb2f0692a77623c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &240793814
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class CustomMessages : Singleton<CustomMessages>
         HeadTransform = MessageID.UserMessageIDStart,
         HandTransform,
         LaserTransform,
+        BenchtopTransform,
         Force,
         Max
     }
@@ -119,6 +120,25 @@ public class CustomMessages : Singleton<CustomMessages>
         return msg;
     }
 
+    public void SendTransform(TestMessageID type, Vector3 position, Quaternion rotation)
+    {
+        // If we are connected to a session, broadcast our head info
+        if (serverConnection != null && serverConnection.IsConnected())
+        {
+            // Create an outgoing network message to contain all the info we want to send
+            NetworkOutMessage msg = CreateMessage((byte)type);
+
+            AppendTransform(msg, position, rotation);
+
+            // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
+            serverConnection.Broadcast(
+                msg,
+                MessagePriority.Immediate,
+                MessageReliability.UnreliableSequenced,
+                MessageChannel.Avatar);
+        }
+    }
+
     public void SendHeadTransform(Vector3 position, Quaternion rotation)
     {
         // If we are connected to a session, broadcast our head info
@@ -126,44 +146,6 @@ public class CustomMessages : Singleton<CustomMessages>
         {
             // Create an outgoing network message to contain all the info we want to send
             NetworkOutMessage msg = CreateMessage((byte)TestMessageID.HeadTransform);
-
-            AppendTransform(msg, position, rotation);
-
-            // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
-            serverConnection.Broadcast(
-                msg,
-                MessagePriority.Immediate,
-                MessageReliability.UnreliableSequenced,
-                MessageChannel.Avatar);
-        }
-    }
-
-    public void SendHandTransform(Vector3 position, Quaternion rotation)
-    {
-        // If we are connected to a session, broadcast our head info
-        if (serverConnection != null && serverConnection.IsConnected())
-        {
-            // Create an outgoing network message to contain all the info we want to send
-            NetworkOutMessage msg = CreateMessage((byte)TestMessageID.HandTransform);
-
-            AppendTransform(msg, position, rotation);
-
-            // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
-            serverConnection.Broadcast(
-                msg,
-                MessagePriority.Immediate,
-                MessageReliability.UnreliableSequenced,
-                MessageChannel.Avatar);
-        }
-    }
-
-    public void SendLaserTransform(Vector3 position, Quaternion rotation)
-    {
-        // If we are connected to a session, broadcast our head info
-        if (serverConnection != null && serverConnection.IsConnected())
-        {
-            // Create an outgoing network message to contain all the info we want to send
-            NetworkOutMessage msg = CreateMessage((byte)TestMessageID.LaserTransform);
 
             AppendTransform(msg, position, rotation);
 
