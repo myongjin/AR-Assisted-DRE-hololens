@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BenchtopViewSwitcher : MonoBehaviour
 {
+    public GameObject anatomyGroup;
 
     private Game game;
 
@@ -14,16 +15,44 @@ public class BenchtopViewSwitcher : MonoBehaviour
         game = Game.Instance;
 
         game.OnModelViewChange += OnModelViewChange;
+
+        ShowSkin();
 	}
 
-    private void OnModelViewChange(ModelView newVal)
+    private void OnModelViewChange(ModelView modelView)
     {
-        Debug.Log(newVal);
+        Debug.Log(modelView);
+        switch (modelView)
+        {
+            case ModelView.Skin:
+                ShowSkin();
+                break;
+            case ModelView.Prostate:
+                ShowProstate();
+                break;
+            case ModelView.Anatomy:
+                ShowAnatomy();
+                break;
+            default:
+                ShowSkin();
+                break;
+        }
     }
 
-    // Update is called once per frame
-    void Update ()
+    public void ShowSkin()
     {
-		
-	}
+        anatomyGroup.GetComponent<GroupAnatomy>().ShowNormalBenchtop();
+    }
+
+    public void ShowProstate()
+    {
+        anatomyGroup.GetComponent<GroupAnatomy>().ShowTransparentBenchtop();
+        anatomyGroup.GetComponent<GroupAnatomy>().ShowProstate("Normal");
+    }
+
+    public void ShowAnatomy()
+    {
+        anatomyGroup.GetComponent<GroupAnatomy>().ShowTransparentAnatomy();
+        anatomyGroup.GetComponent<GroupAnatomy>().ShowProstate("Normal");
+    }
 }
