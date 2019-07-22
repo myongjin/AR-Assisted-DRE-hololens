@@ -99,7 +99,7 @@ public class Game : Singleton<Game>
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Prostate = (ProstateType)(((int)Prostate + 1) % 3);
+            GameStage = (GameStage)(((int)GameStage + 1) % 3);
         }
     }
 }

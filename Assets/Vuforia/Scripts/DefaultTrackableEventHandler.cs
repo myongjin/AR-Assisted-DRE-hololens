@@ -14,6 +14,10 @@ using Vuforia;
 /// </summary>
 public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 {
+
+    public Transform worldStage;
+    public Transform uiPanel;
+
     #region PROTECTED_MEMBER_VARIABLES
 
     protected TrackableBehaviour mTrackableBehaviour;
@@ -53,6 +57,15 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         {
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
             OnTrackingFound();
+
+            worldStage.position = transform.position;
+            worldStage.rotation = transform.rotation;
+
+            uiPanel.position = this.transform.position + new Vector3(0f, 0.4f, 0.12f);
+            uiPanel.rotation = this.transform.rotation;
+
+            GameManager.AdvanceGameStage();
+            TrackerManager.Instance.GetTracker<ObjectTracker>().Stop();
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NOT_FOUND)
