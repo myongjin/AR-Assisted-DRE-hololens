@@ -16,7 +16,6 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 {
 
     public Transform worldStage;
-    public Transform uiPanel;
 
     #region PROTECTED_MEMBER_VARIABLES
 
@@ -61,10 +60,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             worldStage.position = transform.position;
             worldStage.rotation = transform.rotation;
 
-            uiPanel.position = this.transform.position + new Vector3(0f, 0.4f, 0.12f);
-            uiPanel.rotation = this.transform.rotation;
-
-            GameManager.AdvanceGameStage();
+            GameManager.SetGameStage();
             TrackerManager.Instance.GetTracker<ObjectTracker>().Stop();
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&

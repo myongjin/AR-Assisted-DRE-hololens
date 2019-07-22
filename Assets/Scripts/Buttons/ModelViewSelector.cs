@@ -27,4 +27,9 @@ public static class GameManager
     {
         Game.Instance.GameStage = (GameStage)(((int)Game.Instance.GameStage + 1) % 3);
     }
+
+    public static void SetGameStage()
+    {
+        Game.Instance.GameStage = GameStage.AlignModel;
+    }
 }

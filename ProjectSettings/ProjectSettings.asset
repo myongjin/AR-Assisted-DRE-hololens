@@ -568,11 +568,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: AR-Assisted-DRE-client
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 00755e2a895fd601
   metroApplicationDescription: AR-Assisted-DRE-client
   wsaImages: {}
   metroTileShortName: 
