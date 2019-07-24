@@ -129,11 +129,11 @@ public class GroupAnatomy : MonoBehaviour
 
     private void SetMaterialClear(GameObject organ, bool show)
     {
-        foreach (Transform childBone in organ.transform)
+        foreach (Transform childOrgan in organ.transform)
         {
-            if (childBone.gameObject.name != "ToolTip")
+            if (childOrgan.gameObject.tag != "ToolTip")
             {
-                childBone.gameObject.GetComponent<MaterialSetter>().SetMaterialClear(!show);
+                childOrgan.gameObject.GetComponent<MaterialSetter>().SetMaterialClear(!show);
             }
         }
     }

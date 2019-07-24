@@ -8,7 +8,7 @@ public class MaterialSetter : MonoBehaviour {
     private Material originalMaterial;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         originalMaterial = GetComponent<MeshRenderer>().material;
 	}
 	
