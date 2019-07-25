@@ -6995,7 +6995,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1358047792}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c47f92041efbb4b429a4eafca855ebe3, type: 3}
   m_Name: 
@@ -7006,27 +7006,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1358047792}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -1826476478, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mWorldCenterMode: 2
   mWorldCenter: {fileID: 0}
---- !u!114 &1358047795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1358047792}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dff855bc6a71c334d85f360113932697, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingAngle: 0.01
-  centre: {fileID: 1312907135}
-  right: {fileID: 1040945855}
 --- !u!114 &1358047796
 MonoBehaviour:
   m_ObjectHideFlags: 0

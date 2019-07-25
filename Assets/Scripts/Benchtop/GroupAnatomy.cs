@@ -40,6 +40,8 @@ public class GroupAnatomy : MonoBehaviour
         skin.GetComponent<Renderer>().material = benchtopNormal;
         DRERectum.GetComponent<Renderer>().material = benchtopNormal;
         coccyx.GetComponent<Renderer>().material = benchtopNormal;
+
+        ToggleTooltip(false);
     }
 
     public void ShowTransparentBenchtop()
@@ -54,6 +56,8 @@ public class GroupAnatomy : MonoBehaviour
         skin.GetComponent<Renderer>().material = benchtopTransparent;
         DRERectum.GetComponent<Renderer>().material = benchtopTransparent;
         coccyx.GetComponent<Renderer>().material = benchtopTransparent;
+
+        ToggleTooltip(false);
     }
 
     public void ShowTransparentAnatomy()
@@ -68,6 +72,9 @@ public class GroupAnatomy : MonoBehaviour
         skin.GetComponent<Renderer>().material = benchtopTransparent;
         DRERectum.GetComponent<Renderer>().material = benchtopTransparent;
         coccyx.GetComponent<Renderer>().material = benchtopTransparent;
+
+
+        ToggleTooltip(true);
     }
 
     public void ShowProstate(string name)
@@ -125,6 +132,19 @@ public class GroupAnatomy : MonoBehaviour
         realProstates.SetActive(show);
         //realRectum.SetActive(show);
         //}
+    }
+
+
+
+    private void ToggleTooltip(bool active)
+    {
+        foreach (GameObject tooltip in tooltips)
+        {
+            if (tooltip.activeSelf != active)
+            {
+                tooltip.SetActive(active);
+            }
+        }
     }
 
     private void SetMaterialClear(GameObject organ, bool show)
