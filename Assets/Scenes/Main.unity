@@ -6995,7 +6995,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1358047792}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c47f92041efbb4b429a4eafca855ebe3, type: 3}
   m_Name: 
@@ -7006,7 +7006,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1358047792}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1826476478, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
@@ -7039,7 +7039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centre: {fileID: 1312907135}
-  offsetAngle: 5
+  offsetAngle: 1
 --- !u!1 &1360088695 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1965437126575180, guid: 5ce7b9444b2e44349ad68e519d525f26,
