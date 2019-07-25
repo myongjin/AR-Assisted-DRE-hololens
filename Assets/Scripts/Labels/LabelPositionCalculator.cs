@@ -10,6 +10,7 @@ public class LabelPositionCalculator : MonoBehaviour
     public Transform centre;
     //public Transform sphere;
     public float objectRadius;
+    public Vector3 pivotPosition;
 
     private Camera cam;
     private Vector3 normal;
@@ -35,6 +36,7 @@ public class LabelPositionCalculator : MonoBehaviour
 
         normalDirection = (anchor.position - projectedCentre).normalized;
 
-        pivot.position = projectedCentre + normalDirection * objectRadius;
-	}
+        //pivot.position = projectedCentre + normalDirection * objectRadius;
+        pivotPosition = projectedCentre + normalDirection * objectRadius;
+    }
 }

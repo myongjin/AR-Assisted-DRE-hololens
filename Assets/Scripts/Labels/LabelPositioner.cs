@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 struct Tooltip
@@ -38,20 +35,16 @@ struct Tooltip
 
 public class LabelPositioner : MonoBehaviour
 {
+    public float startingAngle = 0f;
     public Transform centre;
     public Transform right;
 
     private Tooltip[] tooltipCollection;
-    //private Transform[] anchors;
-    //private Transform[] pivots;
 
     private Camera cam;
 
     private Vector3 normal;
     private Plane plane;
-    //private Vector3[] projectedAnchors;
-    //private float[] angles;
-    //private int[] order;
 
     // Use this for initialization
     void Start ()
@@ -98,12 +91,14 @@ public class LabelPositioner : MonoBehaviour
         if (plane.Raycast(ray, out enter))
         {
             hitPoint = ray.GetPoint(enter);
-            right.transform.position = hitPoint;
+            //right.transform.position = hitPoint;
         }
         
         Vector3 zeroAngle = hitPoint - projectedCentre;
 
         float angle;
+        float newAngle = 360;
+        float angleStep = 360f / tooltipCollection.Length;
         for (int i = 0; i < tooltipCollection.Length; i++)
         {
             angle = Vector3.SignedAngle(zeroAngle, tooltipCollection[i].projectedAnchor - projectedCentre, normal);
@@ -112,24 +107,47 @@ public class LabelPositioner : MonoBehaviour
                 angle = 360 + angle;
             }
             tooltipCollection[i].angle = angle;
-            //text += tooltips[i].name + ": " + angle.ToString("F2") + "\n";
+
+            newAngle = Mathf.Min(angle - (float)Math.Floor(d: angle / angleStep) * angleStep, newAngle);
+            //text += tooltipCollection[i].gameobject.name + ": " + angle.ToString("F2") + "\n";
         }
         //Debug.Log(text);
         Array.Sort(tooltipCollection, (x, y) => x.angle.CompareTo(y.angle));
-        //Array.Sort(theArray, (x, y) => string.Compare(x.Artist, y.Artist));
 
-        // print all element of array 
-        float newAngle = 0;
-        float angleStep = 360f / tooltipCollection.Length;
-        Vector3 newZeroPoint = projectedCentre + 0.33f * zeroAngle.normalized;
-        foreach (Tooltip tooltip in tooltipCollection)
+        bool reArrange = false;
+        for (int i = 0; i < tooltipCollection.Length - 1; i++)
         {
-            newAngle += angleStep;
-            tooltip.pivot.position = newZeroPoint.RotateAroundPivot(centre.position, Quaternion.AngleAxis(newAngle, normal));
-            text += tooltip.gameobject.name + " " + tooltip.angle.ToString("F2") + "\n";
+            if ((tooltipCollection[i].projectedAnchor - tooltipCollection[i+1].projectedAnchor).magnitude < 0.01)
+            {
+                Debug.Log((tooltipCollection[i].projectedAnchor - tooltipCollection[i + 1].projectedAnchor).magnitude);
+                reArrange = true;
+                break;
+            }
         }
 
-        Debug.Log(text);
+        if (reArrange)
+        {
+
+            // print all element of array 
+            //newAngle = startingAngle;
+            Vector3 newZeroPoint = projectedCentre + 0.3f * zeroAngle.normalized;
+            foreach (Tooltip tooltip in tooltipCollection)
+            {
+                newAngle += angleStep;
+                Vector3 finalPosition = newZeroPoint.RotateAroundPivot(centre.position, Quaternion.AngleAxis(newAngle, normal));
+
+
+                Plane newPlane = new Plane(normal.normalized, tooltip.anchor.position);
+                finalPosition = newPlane.ClosestPointOnPlane(finalPosition);
+
+                float speed = 1;
+                float step = speed * Time.deltaTime; // calculate distance to move
+                tooltip.pivot.position = Vector3.MoveTowards(tooltip.pivot.position, finalPosition, step);
+                //text += tooltip.gameobject.name + " " + tooltip.angle.ToString("F2") + "\n";
+            }
+
+            //Debug.Log(text);
+        }
         
     }
 }
