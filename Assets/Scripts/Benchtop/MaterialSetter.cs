@@ -2,30 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MaterialSetter : MonoBehaviour {
-
+public class MaterialSetter : MonoBehaviour
+{
     public Material transparentMaterial;
+
+    private MeshRenderer meshRenderer;
     private Material originalMaterial;
 
-	// Use this for initialization
-	void Awake () {
-        originalMaterial = GetComponent<MeshRenderer>().material;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Use this for initialization
+    private void Awake()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+        originalMaterial = meshRenderer.material;
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+
+    }
 
     public void SetMaterialClear(bool isClear)
     {
         if (isClear)
         {
-            GetComponent<MeshRenderer>().material = transparentMaterial;
+            meshRenderer.material = transparentMaterial;
         }
         else
         {
-            GetComponent<MeshRenderer>().material = originalMaterial;
+            meshRenderer.material = originalMaterial;
         }
     }
 }

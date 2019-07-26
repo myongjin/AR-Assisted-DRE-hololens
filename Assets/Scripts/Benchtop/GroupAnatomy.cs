@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.Assertions;
 
 public class GroupAnatomy : MonoBehaviour
 {
@@ -8,7 +6,7 @@ public class GroupAnatomy : MonoBehaviour
     public GameObject urinary;
     public GameObject repro;
     public GameObject muscle;
-    
+
     public GameObject realProstates;
     public GameObject DREProstates;
     public GameObject realRectum;
@@ -23,123 +21,86 @@ public class GroupAnatomy : MonoBehaviour
     private GameObject[] anatomyExpandable;
     private GameObject[] tooltips;
 
+    private Renderer skinRenderer;
+    private Renderer DRERectumRenderer;
+    private Renderer coccyxRenderer;
+
+    private MaterialSetter DRERectumMaterialSetter;
+    private MaterialSetter realRectumMaterialSetter;
+
     private void Start()
     {
         anatomyExpandable = GameObject.FindGameObjectsWithTag("AnatomyAnimation");
         tooltips = GameObject.FindGameObjectsWithTag("ToolTip");
+
+        skinRenderer = skin.GetComponent<Renderer>();
+        DRERectumRenderer = DRERectum.GetComponent<Renderer>();
+        coccyxRenderer = coccyx.GetComponent<Renderer>();
+
+        DRERectumMaterialSetter = DRERectum.GetComponent<MaterialSetter>();
+        realRectumMaterialSetter = realRectum.GetComponent<MaterialSetter>();
     }
 
     public void ShowNormalBenchtop()
     {
-        skin.SetActive(true);
-        coccyx.SetActive(true);
-
-        SetVisibleDRE(true);
-
-        SetVisibleAnatomy(false);
-
-        skin.GetComponent<Renderer>().material = benchtopNormal;
-        DRERectum.GetComponent<Renderer>().material = benchtopNormal;
-        coccyx.GetComponent<Renderer>().material = benchtopNormal;
-
-        ToggleTooltip(false);
+        SetBenchtopVisiblewithMaterial(true, benchtopNormal);
     }
 
     public void ShowTransparentBenchtop()
     {
-        skin.SetActive(true);
-        coccyx.SetActive(true);
-
-        SetVisibleDRE(true);
-
-        SetVisibleAnatomy(false);
-
-        skin.GetComponent<Renderer>().material = benchtopTransparent;
-        DRERectum.GetComponent<Renderer>().material = benchtopTransparent;
-        coccyx.GetComponent<Renderer>().material = benchtopTransparent;
-
-        ToggleTooltip(false);
+        SetBenchtopVisiblewithMaterial(true, benchtopTransparent);
     }
 
     public void ShowTransparentAnatomy()
     {
-        skin.SetActive(true);
-        coccyx.SetActive(true);
-
-        SetVisibleDRE(false);
-
-        SetVisibleAnatomy(true);
-
-        skin.GetComponent<Renderer>().material = benchtopTransparent;
-        DRERectum.GetComponent<Renderer>().material = benchtopTransparent;
-        coccyx.GetComponent<Renderer>().material = benchtopTransparent;
-
-
-        ToggleTooltip(true);
+        SetBenchtopVisiblewithMaterial(false, benchtopTransparent);
     }
 
     public void ShowProstate(string name)
     {
         foreach (Transform child in DREProstates.transform)
         {
-            GameObject p = child.gameObject;
-            p.SetActive(p.name == name);
-
+            GameObject prostate = child.gameObject;
+            prostate.SetActive(prostate.name == name);
         }
         foreach (Transform child in realProstates.transform)
         {
-            GameObject p = child.gameObject;
-            p.SetActive(p.name == name);
+            GameObject prostate = child.gameObject;
+            prostate.SetActive(prostate.name == name);
         }
+    }
+
+    private void SetBenchtopVisiblewithMaterial(bool isVisible, Material material)
+    {
+        SetVisibleDRE(isVisible);
+        SetVisibleAnatomy(!isVisible);
+
+        skinRenderer.material = material;
+        DRERectumRenderer.material = material;
+        coccyxRenderer.material = material;
+
+        ToggleTooltip(!isVisible);
     }
 
     private void SetVisibleDRE(bool show)
     {
-        //DRERectum.SetActive(show);
-        DRERectum.GetComponent<MaterialSetter>().SetMaterialClear(!show);
+        DRERectumMaterialSetter.SetMaterialClear(!show);
         DREProstates.SetActive(show);
     }
 
     private void SetVisibleAnatomy(bool show)
     {
-        //if (!show && GameState.Instance.ShowTutorial)
-        //{
-        //foreach (GameObject anatomy in anatomyExpandable)
-        //{
-        //    anatomy.GetComponent<ExpandedView>().MinmiseExpandView();
-        //}
-
-
-        //urinary.SetActive(show);
-        //repro.SetActive(show);
-        //muscle.SetActive(show);
-        //realProstates.SetActive(show);
-        //realRectum.SetActive(show);
-
-        //} else
-        //{
-        //bone.SetActive(show);
-        SetMaterialClear(bone, show);
-        SetMaterialClear(urinary, show);
-        SetMaterialClear(repro, show);
-        SetMaterialClear(muscle, show);
-
-        //realProstates.GetComponent<MaterialSetter>().SetMaterialClear(!show);
-        realRectum.GetComponent<MaterialSetter>().SetMaterialClear(!show);
-
-        //urinary.SetActive(show);
-        //repro.SetActive(show);
-        //muscle.SetActive(show);
+        SetChildrenVisibility(bone, show);
+        SetChildrenVisibility(urinary, show);
+        SetChildrenVisibility(repro, show);
+        SetChildrenVisibility(muscle, show);
+        realRectumMaterialSetter.SetMaterialClear(!show);
         realProstates.SetActive(show);
-        //realRectum.SetActive(show);
-        //}
     }
-
-
 
     private void ToggleTooltip(bool active)
     {
-        if (tooltips != null && tooltips[0] != null)
+        if (tooltips != null && tooltips.Length > 0)
         {
             foreach (GameObject tooltip in tooltips)
             {
@@ -155,7 +116,7 @@ public class GroupAnatomy : MonoBehaviour
         }
     }
 
-    private void SetMaterialClear(GameObject organ, bool show)
+    private void SetChildrenVisibility(GameObject organ, bool show)
     {
         foreach (Transform childOrgan in organ.transform)
         {

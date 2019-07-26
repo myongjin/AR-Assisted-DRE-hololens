@@ -7,8 +7,8 @@ public class BenchtopViewSwitcher : MonoBehaviour
     private Game game;
     private GroupAnatomy groupAnatomy;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         game = Game.Instance;
 
@@ -26,7 +26,7 @@ public class BenchtopViewSwitcher : MonoBehaviour
             // start with normal benchtop
             ShowSkin();
         }
-	}
+    }
 
     private void OnProstateChange(ProstateType prostate)
     {
@@ -65,6 +65,7 @@ public class BenchtopViewSwitcher : MonoBehaviour
         if (groupAnatomy != null)
         {
             groupAnatomy.ShowNormalBenchtop();
+            groupAnatomy.ShowProstate(game.Prostate.ToString());
         }
     }
 
@@ -73,7 +74,7 @@ public class BenchtopViewSwitcher : MonoBehaviour
         if (groupAnatomy != null)
         {
             groupAnatomy.ShowTransparentBenchtop();
-            groupAnatomy.ShowProstate("Normal");
+            groupAnatomy.ShowProstate(game.Prostate.ToString());
         }
     }
 
@@ -82,7 +83,7 @@ public class BenchtopViewSwitcher : MonoBehaviour
         if (groupAnatomy != null)
         {
             groupAnatomy.ShowTransparentAnatomy();
-            groupAnatomy.ShowProstate("Normal");
+            groupAnatomy.ShowProstate(game.Prostate.ToString());
         }
     }
 }
