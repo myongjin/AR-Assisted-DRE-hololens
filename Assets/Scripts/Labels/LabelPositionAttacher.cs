@@ -129,7 +129,7 @@ public class LabelPositionAttacher : MonoBehaviour {
             }
             count -= 1;
         }
-        Debug.Log(text);
+        //Debug.Log(text);
 
     }
 

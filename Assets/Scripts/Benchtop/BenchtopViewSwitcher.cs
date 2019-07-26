@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BenchtopViewSwitcher : MonoBehaviour
 {
-    public GameObject anatomyGroup;
+    public GameObject pelvicAnatomy;
 
     private Game game;
+    private GroupAnatomy groupAnatomy;
 
 	// Use this for initialization
 	void Start ()
@@ -17,49 +15,74 @@ public class BenchtopViewSwitcher : MonoBehaviour
         game.OnModelViewChange += OnModelViewChange;
         game.OnProstateChange += OnProstateChange;
 
-        ShowSkin();
+        groupAnatomy = pelvicAnatomy.GetComponent<GroupAnatomy>();
+
+        if (groupAnatomy == null)
+        {
+            Debug.Log("GroupAnatomy is not attached to PelvicAnatomy GameObject");
+        }
+        else
+        {
+            // start with normal benchtop
+            ShowSkin();
+        }
 	}
 
     private void OnProstateChange(ProstateType prostate)
     {
-        Debug.Log(prostate.ToString());
-        anatomyGroup.GetComponent<GroupAnatomy>().ShowProstate(prostate.ToString());
+        if (groupAnatomy != null)
+        {
+            Debug.Log(prostate.ToString());
+            groupAnatomy.ShowProstate(prostate.ToString());
+        }
     }
 
     private void OnModelViewChange(ModelView modelView)
     {
-        Debug.Log(modelView);
-        switch (modelView)
+        if (groupAnatomy != null)
         {
-            case ModelView.Skin:
-                ShowSkin();
-                break;
-            case ModelView.Prostate:
-                ShowProstate();
-                break;
-            case ModelView.Anatomy:
-                ShowAnatomy();
-                break;
-            default:
-                ShowSkin();
-                break;
+            Debug.Log(modelView);
+            switch (modelView)
+            {
+                case ModelView.Skin:
+                    ShowSkin();
+                    break;
+                case ModelView.Prostate:
+                    ShowProstate();
+                    break;
+                case ModelView.Anatomy:
+                    ShowAnatomy();
+                    break;
+                default:
+                    ShowSkin();
+                    break;
+            }
         }
     }
 
     public void ShowSkin()
     {
-        anatomyGroup.GetComponent<GroupAnatomy>().ShowNormalBenchtop();
+        if (groupAnatomy != null)
+        {
+            groupAnatomy.ShowNormalBenchtop();
+        }
     }
 
     public void ShowProstate()
     {
-        anatomyGroup.GetComponent<GroupAnatomy>().ShowTransparentBenchtop();
-        anatomyGroup.GetComponent<GroupAnatomy>().ShowProstate("Normal");
+        if (groupAnatomy != null)
+        {
+            groupAnatomy.ShowTransparentBenchtop();
+            groupAnatomy.ShowProstate("Normal");
+        }
     }
 
     public void ShowAnatomy()
     {
-        anatomyGroup.GetComponent<GroupAnatomy>().ShowTransparentAnatomy();
-        anatomyGroup.GetComponent<GroupAnatomy>().ShowProstate("Normal");
+        if (groupAnatomy != null)
+        {
+            groupAnatomy.ShowTransparentAnatomy();
+            groupAnatomy.ShowProstate("Normal");
+        }
     }
 }

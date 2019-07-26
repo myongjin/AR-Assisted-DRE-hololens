@@ -26,6 +26,16 @@ public enum ProstateType
     BilateralCarcinoma
 }
 
+public enum DREStage
+{
+    Start,
+    Anus,
+    Rectum,
+    Prostate,
+    PalpateProstate,
+    Remove
+}
+
 public class Game : Singleton<Game>
 {
     public event OnGameStageChangeDelegate OnGameStageChange;
@@ -36,6 +46,9 @@ public class Game : Singleton<Game>
 
     public event OnProstateChangeDelegate OnProstateChange;
     public delegate void OnProstateChangeDelegate(ProstateType prostate);
+
+    public event OnDREStageChangeDelegate OnDREStageChange;
+    public delegate void OnDREStageChangeDelegate(DREStage dreStage);
 
     [SerializeField]
     private GameStage _gameStage = GameStage.FindTransmitter;
@@ -85,6 +98,23 @@ public class Game : Singleton<Game>
             _prostate = value;
             if (OnProstateChange != null)
                 OnProstateChange(_prostate);
+        }
+    }
+
+    [SerializeField]
+    private DREStage _dreStage = DREStage.Anus;
+    public DREStage DREStage
+    {
+        get
+        {
+            return _dreStage;
+        }
+        set
+        {
+            if (_dreStage == value) return;
+            _dreStage = value;
+            if (OnDREStageChange != null)
+                OnDREStageChange(_dreStage);
         }
     }
 

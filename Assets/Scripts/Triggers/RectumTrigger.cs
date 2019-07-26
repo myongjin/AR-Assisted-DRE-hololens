@@ -13,4 +13,12 @@ public class RectumTrigger : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (Game.Instance.GameStage == GameStage.StartTraining && Game.Instance.DREStage == DREStage.Anus)
+        {
+            Game.Instance.DREStage = DREStage.Rectum;
+        }
+    }
 }

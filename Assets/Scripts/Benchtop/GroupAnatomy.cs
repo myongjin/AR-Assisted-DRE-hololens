@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Assertions;
 
 public class GroupAnatomy : MonoBehaviour
 {
@@ -138,12 +139,19 @@ public class GroupAnatomy : MonoBehaviour
 
     private void ToggleTooltip(bool active)
     {
-        foreach (GameObject tooltip in tooltips)
+        if (tooltips != null && tooltips[0] != null)
         {
-            if (tooltip.activeSelf != active)
+            foreach (GameObject tooltip in tooltips)
             {
-                tooltip.SetActive(active);
+                if (tooltip.activeSelf != active)
+                {
+                    tooltip.SetActive(active);
+                }
             }
+        }
+        else
+        {
+            Debug.Log("No tooltips found");
         }
     }
 

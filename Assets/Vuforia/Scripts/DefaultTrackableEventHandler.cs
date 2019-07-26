@@ -14,8 +14,10 @@ using Vuforia;
 /// </summary>
 public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 {
+    public GameObject recalibrateButton;
+    //public Transform worldStage;
 
-    public Transform worldStage;
+    private TransmitterPlacement transmitterPlacement;
 
     #region PROTECTED_MEMBER_VARIABLES
 
@@ -30,6 +32,8 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         if (mTrackableBehaviour)
             mTrackableBehaviour.RegisterTrackableEventHandler(this);
+
+        transmitterPlacement = recalibrateButton.GetComponent<TransmitterPlacement>();
     }
 
     protected virtual void OnDestroy()
@@ -57,11 +61,13 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
             OnTrackingFound();
 
-            worldStage.position = transform.position;
-            worldStage.rotation = transform.rotation;
+            transmitterPlacement.SetTransmitterPosition(transform);
 
-            GameManager.SetGameStage();
-            TrackerManager.Instance.GetTracker<ObjectTracker>().Stop();
+            //worldStage.position = transform.position;
+            //worldStage.rotation = transform.rotation;
+
+            //GameManager.SetGameStage();
+            //TrackerManager.Instance.GetTracker<ObjectTracker>().Stop();
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NOT_FOUND)

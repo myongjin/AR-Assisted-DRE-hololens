@@ -19,6 +19,7 @@ public class ModelAlignment : MonoBehaviour
     public GameObject landmarkInfoObject;
     public TextMesh landmarkInfoText;
     public TextMesh registerButtonText;
+    public TextMesh currentLandmarkText;
 
     public int LandmarkCount { get; private set; }
 
@@ -38,15 +39,6 @@ public class ModelAlignment : MonoBehaviour
         {
             ShowLandmarkInfo();
         }
-        //if (GameState.Instance.GameStage == GameStage.AlignModel)
-        //{
-        //    landmarkInfoObject.SetActive(true);
-        //    ShowLandmarkInfo();
-        //}
-        //else
-        //{
-        //    landmarkInfoObject.SetActive(false);
-        //}
     }
 
     #region PUBLIC_METHOD
@@ -118,6 +110,7 @@ public class ModelAlignment : MonoBehaviour
         virtualLandmarkPositions = GetAllLandmarkPositions(virtualLandmarks);
 
         registerButtonText.text = "REGISTER: " + (LandmarkCount + 1).ToString();
+        currentLandmarkText.text = "Landmark: " + (LandmarkCount + 1).ToString();
 
         string landmarkInfoString = "";
         for (int i = 0; i < virtualLandmarks.Length; i++)
