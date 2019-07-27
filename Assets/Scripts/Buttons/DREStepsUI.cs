@@ -1,20 +1,36 @@
-﻿using System.Collections;
+﻿using HoloToolkit.Examples.InteractiveElements;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DREStepsUI : MonoBehaviour {
+public class DREStepsUI : MonoBehaviour
+{
+    private Game game;
+    private InteractiveSet interactiveSet;
+    private List<InteractiveToggle> interactiveToggles;
 
-    GameObject[] checkboxes;
+    // Use this for initialization
+    private void Start()
+    {
+        game = Game.Instance;
+        game.OnDREStageChange += OnDREStageChange;
 
-	// Use this for initialization
-	void Start () {
-		checkboxes = GameObject.FindGameObjectsWithTag("CheckBox");
+        interactiveSet = GetComponent<InteractiveSet>();
+        interactiveToggles = interactiveSet.Interactives;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
+    // Update is called once per frame
+    private void Update()
+    {
 
+    }
+
+    private void OnDREStageChange(DREStage dreStage)
+    {
+        var setSelections = new List<int>();
+
+        for (int i = 0; i < (int)dreStage; i++)
+        {
+            interactiveToggles[i].HasSelection = true;
+        }
+    }
 }

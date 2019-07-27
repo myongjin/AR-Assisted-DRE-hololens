@@ -18,7 +18,7 @@ public class TransmitterPlacement : MonoBehaviour
         worldStage.position = targetTransform.position;
         worldStage.rotation = targetTransform.rotation;
 
-        GameManager.SetGameStage();
+        GameManager.SetAlignModelGameStage();
         TrackerManager.Instance.GetTracker<ObjectTracker>().Stop();
         interactive.HasSelection = false;
     }

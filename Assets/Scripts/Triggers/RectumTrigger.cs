@@ -1,22 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class RectumTrigger : MonoBehaviour {
+public class RectumTrigger : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Use this for initialization
+    private void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (Game.Instance.GameStage == GameStage.StartTraining && Game.Instance.DREStage == DREStage.Anus)
+        if (other.gameObject.name != "Finger") return;
+        if (Game.Instance.GameStage == GameStage.StartTraining) return;
+
+        if (Game.Instance.DREStage == DREStage.Anus)
         {
             Game.Instance.DREStage = DREStage.Rectum;
         }
