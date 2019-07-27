@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 0}
 --- !u!23 &16494187
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -987,7 +987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 0}
 --- !u!114 &111333667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2697,7 +2697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 0}
 --- !u!23 &222242745
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2788,7 +2788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 0}
 --- !u!64 &230236758
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3688,7 +3688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 0}
 --- !u!114 &313427937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6100,7 +6100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 0}
 --- !u!114 &549441027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7555,7 +7555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 0}
 --- !u!23 &628077183
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8062,7 +8062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 0}
 --- !u!114 &696724258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9777,7 +9777,7 @@ Prefab:
     - target: {fileID: 114000013159681914, guid: c92aa1db800800042875a66448187050,
         type: 2}
       propertyPath: OnSelection.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RestartTransmiiter
+      value: RestartTransmitterTracking
       objectReference: {fileID: 0}
     - target: {fileID: 114000013159681914, guid: c92aa1db800800042875a66448187050,
         type: 2}
@@ -13852,7 +13852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 0}
 --- !u!23 &1066547970
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15177,7 +15177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 0}
 --- !u!114 &1266847011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15253,7 +15253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67573fcf69a715246bab08bc1addac2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldStage: {fileID: 858380547}
+  WorldStage: {fileID: 858380547}
 --- !u!4 &1284352978 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010767407164, guid: c92aa1db800800042875a66448187050,
@@ -17250,7 +17250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 0}
 --- !u!114 &1459662641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20049,7 +20049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 0}
 --- !u!114 &1687345114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24734,7 +24734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67573fcf69a715246bab08bc1addac2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldStage: {fileID: 0}
+  WorldStage: {fileID: 0}
 --- !u!1 &1995251003 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 163528, guid: 8aaf37823b26ee449bb3b3d7775965c3, type: 2}

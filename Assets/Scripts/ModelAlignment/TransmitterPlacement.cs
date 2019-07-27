@@ -4,7 +4,7 @@ using Vuforia;
 
 public class TransmitterPlacement : MonoBehaviour
 {
-    public Transform worldStage;
+    public Transform WorldStage;
 
     private InteractiveToggle interactive;
 
@@ -15,15 +15,15 @@ public class TransmitterPlacement : MonoBehaviour
 
     public void SetTransmitterPosition(Transform targetTransform)
     {
-        worldStage.position = targetTransform.position;
-        worldStage.rotation = targetTransform.rotation;
+        WorldStage.position = targetTransform.position;
+        WorldStage.rotation = targetTransform.rotation;
 
         GameManager.SetAlignModelGameStage();
         TrackerManager.Instance.GetTracker<ObjectTracker>().Stop();
         interactive.HasSelection = false;
     }
 
-    public void RestartTransmiiter()
+    public void RestartTransmitterTracking()
     {
         TrackerManager.Instance.GetTracker<ObjectTracker>().Start();
     }

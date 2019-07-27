@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MaterialSetter : MonoBehaviour
 {
-    public Material transparentMaterial;
+    public Material TransparentMaterial;
 
     private MeshRenderer meshRenderer;
     private Material originalMaterial;
@@ -24,13 +24,6 @@ public class MaterialSetter : MonoBehaviour
 
     public void SetMaterialClear(bool isClear)
     {
-        if (isClear)
-        {
-            meshRenderer.material = transparentMaterial;
-        }
-        else
-        {
-            meshRenderer.material = originalMaterial;
-        }
+        meshRenderer.material = isClear ? TransparentMaterial : originalMaterial;
     }
 }

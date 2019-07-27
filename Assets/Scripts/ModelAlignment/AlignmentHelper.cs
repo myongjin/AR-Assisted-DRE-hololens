@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AlignmentHelper : MonoBehaviour
 {
@@ -8,10 +6,10 @@ public class AlignmentHelper : MonoBehaviour
     public static Vector3 GetCentroidPosition(Vector3[] positions)
     {
         if (positions.Length == 0) return Vector3.zero;
-        Vector3 centroidPosition = Vector3.zero;
-        for (int i = 0; i < positions.Length; i++)
+        var centroidPosition = Vector3.zero;
+        foreach (var position in positions)
         {
-            centroidPosition += positions[i];
+            centroidPosition += position;
         }
         centroidPosition /= positions.Length;
         return centroidPosition;
