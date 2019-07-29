@@ -20,13 +20,13 @@ public class LabelPositionCalculator : MonoBehaviour
     private Vector3 normalDirection;
 
 	// Use this for initialization
-	void Start ()
+    private void Start ()
     {
         cam = Camera.main;
 	}
 	
 	// Update is called once per frame
-	void Update ()
+    private void Update ()
     {
         normal = cam.transform.position - anchor.position;
 
@@ -37,6 +37,7 @@ public class LabelPositionCalculator : MonoBehaviour
         normalDirection = (anchor.position - projectedCentre).normalized;
 
         //pivot.position = projectedCentre + normalDirection * objectRadius;
-        pivotPosition = projectedCentre + normalDirection * objectRadius;
+        //pivotPosition = projectedCentre + normalDirection * objectRadius;
+        pivotPosition = pivot.position;
     }
 }
