@@ -163,12 +163,12 @@ GameObject:
   - component: {fileID: 114080960675377026}
   - component: {fileID: 114095608997918842}
   m_Layer: 0
-  m_Name: ToolTip
+  m_Name: PuboToolTip
   m_TagString: ToolTip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1052581218541144
 GameObject:
   m_ObjectHideFlags: 1
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 114822110101902374}
   - component: {fileID: 114679481520990622}
   m_Layer: 0
-  m_Name: ToolTip
+  m_Name: ProstateToolTip
   m_TagString: ToolTip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 114052169024055286}
   - component: {fileID: 114840096168410200}
   m_Layer: 0
-  m_Name: ToolTip
+  m_Name: BulboureToolTip
   m_TagString: ToolTip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 114170444560783618}
   - component: {fileID: 114898999893804866}
   m_Layer: 0
-  m_Name: ToolTip
+  m_Name: SpineToolTip
   m_TagString: ToolTip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -806,7 +806,7 @@ GameObject:
   - component: {fileID: 114305010370106196}
   - component: {fileID: 114333924351060118}
   m_Layer: 0
-  m_Name: ToolTip
+  m_Name: EpidiToolTip
   m_TagString: ToolTip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1323,7 +1323,7 @@ GameObject:
   - component: {fileID: 114402837963337762}
   - component: {fileID: 114903345857772866}
   m_Layer: 0
-  m_Name: ToolTip
+  m_Name: RectumToolTip
   m_TagString: ToolTip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1420,6 +1420,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1553813038706356
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4020131078579630}
+  m_Layer: 0
+  m_Name: Triggers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1554262395763178
 GameObject:
   m_ObjectHideFlags: 1
@@ -1522,7 +1537,7 @@ GameObject:
   - component: {fileID: 114466267776336966}
   - component: {fileID: 114475975114718268}
   m_Layer: 0
-  m_Name: ToolTip
+  m_Name: BladderToolTip
   m_TagString: ToolTip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1640,7 +1655,7 @@ GameObject:
   - component: {fileID: 114844435531265898}
   - component: {fileID: 114262991087694732}
   m_Layer: 0
-  m_Name: ToolTip
+  m_Name: PelvisToolTip
   m_TagString: ToolTip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1675,7 +1690,7 @@ GameObject:
   - component: {fileID: 135678329077775348}
   - component: {fileID: 23994520465991174}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Centre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1696,7 +1711,7 @@ GameObject:
   - component: {fileID: 114544655155486892}
   - component: {fileID: 114748159711554980}
   m_Layer: 0
-  m_Name: ToolTip
+  m_Name: SeminalToolTip
   m_TagString: ToolTip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1992,7 +2007,7 @@ GameObject:
   - component: {fileID: 114937168074282768}
   - component: {fileID: 114045880571651024}
   m_Layer: 0
-  m_Name: ToolTip
+  m_Name: IllioToolTip
   m_TagString: ToolTip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2432,7 +2447,7 @@ GameObject:
   - component: {fileID: 114242043220877734}
   - component: {fileID: 114342818144426920}
   m_Layer: 0
-  m_Name: ToolTip
+  m_Name: UreterToolTip
   m_TagString: ToolTip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2696,18 +2711,34 @@ Transform:
   m_Father: {fileID: 4639023828334460}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4020131078579630
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1553813038706356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4455560119112614}
+  - {fileID: 4026013767185556}
+  - {fileID: 4933774751986926}
+  m_Father: {fileID: 4376058545387778}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4026013767185556
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1415425302466176}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.3, y: 71.8, z: -291.1}
+  m_LocalRotation: {x: -0, y: -0, z: -3.2969183e-11, w: 1}
+  m_LocalPosition: {x: 41.300003, y: 71.80001, z: -291.10004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4376058545387778}
-  m_RootOrder: 3
+  m_Father: {fileID: 4020131078579630}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4035217810403292
 Transform:
@@ -3372,9 +3403,7 @@ Transform:
   - {fileID: 4991951647555678}
   - {fileID: 4595269182059172}
   - {fileID: 4967897836906490}
-  - {fileID: 4026013767185556}
-  - {fileID: 4455560119112614}
-  - {fileID: 4933774751986926}
+  - {fileID: 4020131078579630}
   m_Father: {fileID: 4639023828334460}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3573,11 +3602,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1586827648125936}
   m_LocalRotation: {x: -0, y: -0, z: -3.2969183e-11, w: 1}
-  m_LocalPosition: {x: 64.9, y: 79.7, z: -300.8}
+  m_LocalPosition: {x: 64.90001, y: 79.7, z: -300.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4376058545387778}
-  m_RootOrder: 4
+  m_Father: {fileID: 4020131078579630}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4459019352437318
 Transform:
@@ -4561,11 +4590,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1756843460108480}
   m_LocalRotation: {x: -0, y: -0, z: -3.2969183e-11, w: 1}
-  m_LocalPosition: {x: 34.6, y: 59.9, z: -266.5}
-  m_LocalScale: {x: 0.99999994, y: 1, z: 0.99999994}
+  m_LocalPosition: {x: 41.5, y: 59.300007, z: -258.10004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4376058545387778}
-  m_RootOrder: 5
+  m_Father: {fileID: 4020131078579630}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4936275158836708
 Transform:
@@ -8060,7 +8089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
 --- !u!114 &114020079721520120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8243,7 +8272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254a0517ab4d01642aac284279fd9353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anatomyGroup: {fileID: 1939557691480244}
+  pelvicAnatomy: {fileID: 1939557691480244}
 --- !u!114 &114071355476195822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8666,7 +8695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
 --- !u!114 &114137520565555008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9521,7 +9550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
 --- !u!114 &114239086764398134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9610,7 +9639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
 --- !u!114 &114247787010637456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9911,7 +9940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
 --- !u!114 &114290850292546056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9923,7 +9952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
 --- !u!114 &114293658375504586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10511,6 +10540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8d663f9bc94f14da558c02c2557070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeLeft: 10
 --- !u!114 &114350829880621180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11273,8 +11303,8 @@ MonoBehaviour:
   UniformDistortionStrength: 1
   distorters: []
   loops: 0
-  Start: {x: 0.0053000003, y: 0.010400003, z: -0.024600003}
-  End: {x: 0.0404, y: 0.025400005, z: -0.03530001}
+  Start: {x: 0.0053000003, y: 0.010400003, z: -0.024600001}
+  End: {x: 0.06560002, y: 0.025400003, z: -0.035300013}
 --- !u!114 &114449891892783656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11549,7 +11579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
 --- !u!114 &114504284534370756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12384,7 +12414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
 --- !u!114 &114744563898234028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12471,7 +12501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
 --- !u!114 &114757157219749104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12571,7 +12601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
 --- !u!114 &114759771891775858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12673,7 +12703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
 --- !u!114 &114780133351873798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12998,7 +13028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e80a9cb546e8458f18ae7d2f59b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
+  TransparentMaterial: {fileID: 2100000, guid: facb09b0003896243b48c50481ddf816, type: 2}
 --- !u!114 &114830957393572730
 MonoBehaviour:
   m_ObjectHideFlags: 1
