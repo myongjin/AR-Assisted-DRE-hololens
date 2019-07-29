@@ -5435,7 +5435,7 @@ Prefab:
     - target: {fileID: 102882196181455140, guid: 6e6521182b532d245b0d80293b332399,
         type: 2}
       propertyPath: m_FontSize
-      value: 80
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 102882196181455140, guid: 6e6521182b532d245b0d80293b332399,
         type: 2}
@@ -5444,11 +5444,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4332148759565260, guid: 6e6521182b532d245b0d80293b332399, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.32
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 4332148759565260, guid: 6e6521182b532d245b0d80293b332399, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 23341247914484290, guid: 6e6521182b532d245b0d80293b332399,
         type: 2}
@@ -5458,6 +5458,22 @@ Prefab:
     - target: {fileID: 1937578906433374, guid: 6e6521182b532d245b0d80293b332399, type: 2}
       propertyPath: m_Name
       value: CurrentLandmarkText
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332148759565260, guid: 6e6521182b532d245b0d80293b332399, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.113
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332148759565260, guid: 6e6521182b532d245b0d80293b332399, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.031
+      objectReference: {fileID: 0}
+    - target: {fileID: 4941047483663062, guid: 6e6521182b532d245b0d80293b332399, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.1136
+      objectReference: {fileID: 0}
+    - target: {fileID: 4941047483663062, guid: 6e6521182b532d245b0d80293b332399, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.0322
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e6521182b532d245b0d80293b332399, type: 2}
@@ -7005,7 +7021,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1358047792}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c47f92041efbb4b429a4eafca855ebe3, type: 3}
   m_Name: 
@@ -7016,7 +7032,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1358047792}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1826476478, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
@@ -8539,14 +8555,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6b38fa79c139fa245bbb932053f58941, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0ba1c160aad1454429cb105896bb0658, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
