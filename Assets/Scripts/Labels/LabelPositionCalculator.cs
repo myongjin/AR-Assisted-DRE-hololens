@@ -38,9 +38,8 @@ public class LabelPositionCalculator : MonoBehaviour
 
         normalDirection = (anchor.position - projectedCentre).normalized;
 
-        //pivot.position = projectedCentre + normalDirection * objectRadius;
         pivotPosition = projectedCentre + normalDirection * objectRadius;
-        //pivotPosition = pivot.position;
+
         ProjectedPivot = plane.ClosestPointOnPlane(pivot.position);
     }
 }

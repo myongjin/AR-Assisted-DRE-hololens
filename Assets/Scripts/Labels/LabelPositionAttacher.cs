@@ -11,7 +11,8 @@ struct TooltipPosition
     public Vector3 ProjectedPivot2D;
 }
 
-public class LabelPositionAttacher : MonoBehaviour {
+public class LabelPositionAttacher : MonoBehaviour
+{
 
     [SerializeField]
     private float timeStart = 1f;
@@ -20,10 +21,10 @@ public class LabelPositionAttacher : MonoBehaviour {
     [SerializeField]
     private float horizontal = 0.14f;
     [SerializeField]
-    private float vertical = 0.06f;
-
+    private float vertical = 0.08f;
+    [SerializeField]
+    private float offsetAngle = 1f;
     public Transform centre;
-    public float offsetAngle;
 
     private Camera cam;
     private Vector3 normal;
@@ -34,7 +35,8 @@ public class LabelPositionAttacher : MonoBehaviour {
     //private float[] angles;
 
     // Use this for initialization
-    void Start () {
+    void Awake()
+    {
         cam = Camera.main;
 
         tooltips = GameObject.FindGameObjectsWithTag("ToolTip");
@@ -63,23 +65,15 @@ public class LabelPositionAttacher : MonoBehaviour {
             i += 1;
         }
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         normal = cam.transform.position - centre.position;
 
         CalculateAngles();
 
         Array.Sort(tooltipPositioners, (x, y) => x.angle.CompareTo(y.angle));
-
-        //string text = "";
-        //for (int i = 0; i < tooltipPositioners.Length; i++)
-        //{
-        //    text += tooltipPositioners[i].positioner.name + ": " + tooltipPositioners[i].angle + "\n";
-        //}
-        //Debug.Log(text);
-        
 
         if (GetOcclusion())
         {
@@ -94,6 +88,17 @@ public class LabelPositionAttacher : MonoBehaviour {
             }
         }
 
+    }
+
+    private void PrintAngles()
+    {
+        string text = "";
+        for (int i = 0; i < tooltipPositioners.Length; i++)
+        {
+            text += tooltipPositioners[i].positioner.name + ": " + tooltipPositioners[i].angle + "\n";
+        }
+
+        Debug.Log(text);
     }
 
     private bool GetOcclusion()
@@ -114,50 +119,42 @@ public class LabelPositionAttacher : MonoBehaviour {
         return false;
     }
 
-    private Vector3 Pivot2DDistance(int i, int j)
-    {
-        return tooltipPositioners[i].ProjectedPivot2D - tooltipPositioners[j].ProjectedPivot2D;
-    }
-
     private void FixOcclusion()
     {
         bool occlusionResolved = false;
         int count = 100;
-        string text = "";
         while (!occlusionResolved && count > 0)
         {
             occlusionResolved = true;
             CalculateAngles();
-            string anothertext = "";
-            for (int i = 0; i < tooltipPositioners.Length; i++)
-            {
-                anothertext += tooltipPositioners[i].positioner.name + ": " + tooltipPositioners[i].angle + "\n";
-            }
-
-            text = "";
+            
             for (int i = 0; i < tooltipPositioners.Length; i++)
             {
                 bool isOccludded = false;
                 float moveAngle = 0.0f;
-                text += tooltipPositioners[i].positioner.gameObject.name + " " + tooltipPositioners[i].angle + " ";
+                
+                var prev = (i - 1 + tooltips.Length) % tooltips.Length;
+                var next = (i + 1) % tooltips.Length;
 
-                if (HorizontalDistance(i, NextElem(i)) < 0.14 && VirticalDistance(i, NextElem(i)) < 0.08)
+                var currentPrevCalculated2DDistance = CalculatedPivot2DDistance(i, prev);
+                var currentNextCalculated2DDistance = CalculatedPivot2DDistance(i, next);
+
+                var curPrevX = Math.Abs(currentPrevCalculated2DDistance.x);
+                var curPrevY = Math.Abs(currentPrevCalculated2DDistance.y);
+                var curNextX = Math.Abs(currentNextCalculated2DDistance.x);
+                var curNextY = Math.Abs(currentNextCalculated2DDistance.y);
+
+                if (curNextX < horizontal && curNextY < vertical)
                 {
-                    text += "R";
                     isOccludded = true;
                     moveAngle -= offsetAngle;
                 }
 
-                if (HorizontalDistance(i, PrevElem(i)) < 0.14 && VirticalDistance(i, PrevElem(i)) < 0.05)
+                if (curPrevX < horizontal && curPrevY < vertical)
                 {
-                    text += "L";
                     isOccludded = true;
                     moveAngle += offsetAngle;
                 }
-
-                text += " " + tooltipPositioners[i].projectedPosition.x + "," + tooltipPositioners[i].projectedPosition.y;
-
-                text += "\n";
 
                 if (!isOccludded)
                 {
@@ -166,38 +163,14 @@ public class LabelPositionAttacher : MonoBehaviour {
                 else
                 {
                     Quaternion pivotRotation = Quaternion.AngleAxis(moveAngle, normal);
-                    //Matrix4x4 mPivot = Matrix4x4.Rotate(rotation);
-                    //tooltipPositioners[i].positioner.pivot.position = mPivot.MultiplyPoint3x4(tooltipPositioners[i].positioner.pivotPosition);
                     tooltipPositioners[i].positioner.pivotPosition = tooltipPositioners[i].positioner.pivotPosition.RotateAroundPivot(centre.position, pivotRotation);
                     tooltipPositioners[i].positioner.pivot.position = tooltipPositioners[i].positioner.pivotPosition;
-                    //Debug.Log(tooltipPositioners[i].positioner.gameObject.name + " " + moveAngle);
                 }
                 occlusionResolved &= !isOccludded;
 
             }
             count -= 1;
         }
-        //Debug.Log(text);
-    }
-
-    private float HorizontalDistance(int i, int j)
-    {
-        return Math.Abs(tooltipPositioners[i].projectedPosition.x - tooltipPositioners[j].projectedPosition.x);
-    }
-
-    private float VirticalDistance(int i, int j)
-    {
-        return Math.Abs(tooltipPositioners[i].projectedPosition.y - tooltipPositioners[j].projectedPosition.y);
-    }
-
-    private int PrevElem(int i)
-    {
-        return (i - 1 + tooltipPositioners.Length) % tooltipPositioners.Length;
-    }
-
-    private int NextElem(int i)
-    {
-        return (i + 1) % tooltipPositioners.Length;
     }
 
     private void CalculateAngles()
@@ -216,6 +189,16 @@ public class LabelPositionAttacher : MonoBehaviour {
 
             tooltipPositioners[i].ProjectedPivot2D = m.MultiplyPoint3x4(tooltipPositioners[i].positioner.ProjectedPivot);
         }
+    }
+
+    private Vector3 Pivot2DDistance(int i, int j)
+    {
+        return tooltipPositioners[i].ProjectedPivot2D - tooltipPositioners[j].ProjectedPivot2D;
+    }
+
+    private Vector3 CalculatedPivot2DDistance(int i, int j)
+    {
+        return tooltipPositioners[i].projectedPosition - tooltipPositioners[j].projectedPosition;
     }
 
     private Vector3 AnchorToPivotVector(int elem)
