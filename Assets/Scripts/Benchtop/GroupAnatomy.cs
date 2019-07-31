@@ -24,13 +24,59 @@ public class GroupAnatomy : MonoBehaviour
     private GameObject[] tooltips;
 
     private Renderer skinRenderer;
-    private Renderer DRERectumRenderer;
+    public Renderer SkinRenderer {
+        get
+        {
+            if (skinRenderer == null)
+            {
+                skinRenderer = skin.GetComponent<Renderer>();
+            }
+            return skinRenderer;
+        }
+        set
+        {
+            skinRenderer = value;
+        }
+    }
+    
+    private Renderer dreRectumRenderer;
+    public Renderer DRERectumRenderer
+    {
+        get
+        {
+            if (dreRectumRenderer == null)
+            {
+                dreRectumRenderer = DRERectum.GetComponent<Renderer>();
+            }
+            return dreRectumRenderer;
+        }
+        set
+        {
+            dreRectumRenderer = value;
+        }
+    }
+
     private Renderer coccyxRenderer;
+    public Renderer CoccyxRenderer
+    {
+        get
+        {
+            if (coccyxRenderer == null)
+            {
+                coccyxRenderer = coccyx.GetComponent<Renderer>();
+            }
+            return coccyxRenderer;
+        }
+        set
+        {
+            coccyxRenderer = value;
+        }
+    }
 
     private MaterialSetter DRERectumMaterialSetter;
     private MaterialSetter realRectumMaterialSetter;
 
-    private void Start()
+    private void Awake()
     {
         anatomyExpandable = GameObject.FindGameObjectsWithTag("AnatomyAnimation");
         tooltips = GameObject.FindGameObjectsWithTag("ToolTip");
@@ -104,12 +150,13 @@ public class GroupAnatomy : MonoBehaviour
 
     private void SetBenchtopVisiblewithMaterial(bool isVisible, Material material)
     {
+
+        SkinRenderer.material = material;
+        DRERectumRenderer.material = material;
+        CoccyxRenderer.material = material;
+
         SetVisibleDRE(isVisible);
         SetVisibleAnatomy(!isVisible);
-
-        skinRenderer.material = material;
-        DRERectumRenderer.material = material;
-        coccyxRenderer.material = material;
 
         //ToggleTooltip(false);
         ToggleTooltip(!isVisible);
