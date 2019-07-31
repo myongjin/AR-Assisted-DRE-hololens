@@ -1,38 +1,21 @@
-﻿using UnityEngine;
+﻿//using UnityEngine;
 
-public class ToolTipPositionCalculator : MonoBehaviour
-{
-    public Vector3 normal;
-    public float Angle;
-    public Vector3 ProjectedPosition;
+//public struct ToolTipPosition
+//{
+//    public GameObject Parent;
+//    public float Angle;
+//    public Vector3 ProjectedAnchor;
+//    public Vector3 ProjectedPivot;
+//    public Vector3 ProjectedPivot2D;
+//    public float OffsetAngle;
+//    public Vector3 RadialPivotPosition;
+//    public Vector3 CalculatedPivotPosition;
+//    public bool isOccludedPrev;
+//    public bool isOccludedNext;
 
-    public Transform Centre;
-    public Transform Anchor;
-    public Transform Pivot;
-
-    private Plane plane;
-
-    private void Start()
-    {
-        foreach (Transform child in transform)
-        {
-            switch (child.gameObject.name)
-            {
-                case "Pivot":
-                    Pivot = child;
-                    break;
-                case "Anchor":
-                    Anchor = child;
-                    break;
-            }
-        }
-    }
-
-    private void Update()
-    {
-        // create plane
-        plane = new Plane(CameraPlane.Instance.Normal, Anchor.transform.position);
-    }
+//    public Transform Centre;
+//    public Transform Anchor;
+//    public Transform Pivot;
 
 
-}
+//}

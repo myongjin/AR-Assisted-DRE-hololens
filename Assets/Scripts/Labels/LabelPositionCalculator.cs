@@ -11,11 +11,13 @@ public class LabelPositionCalculator : MonoBehaviour
     //public Transform sphere;
     public float objectRadius;
     public Vector3 pivotPosition;
+    public Vector3 ProjectedPivot;
 
     private Camera cam;
     private Vector3 normal;
     private Plane plane;
     private Vector3 projectedCentre;
+    
     private float radius;
     private Vector3 normalDirection;
 
@@ -37,7 +39,8 @@ public class LabelPositionCalculator : MonoBehaviour
         normalDirection = (anchor.position - projectedCentre).normalized;
 
         //pivot.position = projectedCentre + normalDirection * objectRadius;
-        //pivotPosition = projectedCentre + normalDirection * objectRadius;
-        pivotPosition = pivot.position;
+        pivotPosition = projectedCentre + normalDirection * objectRadius;
+        //pivotPosition = pivot.position;
+        ProjectedPivot = plane.ClosestPointOnPlane(pivot.position);
     }
 }

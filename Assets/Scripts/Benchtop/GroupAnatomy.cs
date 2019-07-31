@@ -6,6 +6,8 @@ public class GroupAnatomy : MonoBehaviour
     public GameObject urinary;
     public GameObject repro;
     public GameObject muscle;
+    public GameObject colon;
+    public GameObject prostate;
 
     public GameObject realProstates;
     public GameObject DREProstates;
@@ -70,6 +72,36 @@ public class GroupAnatomy : MonoBehaviour
         }
     }
 
+    public void ResetAnatomyPosition()
+    {
+        bone.transform.localPosition = Vector3.zero;
+        urinary.transform.localPosition = Vector3.zero;
+        repro.transform.localPosition = Vector3.zero;
+        muscle.transform.localPosition = Vector3.zero;
+        skin.transform.localPosition = Vector3.zero;
+        coccyx.transform.localPosition = Vector3.zero;
+        colon.transform.localPosition = Vector3.zero;
+        prostate.transform.localPosition = Vector3.zero;
+
+        bone.transform.localScale = Vector3.one;
+        urinary.transform.localScale = Vector3.one;
+        repro.transform.localScale = Vector3.one;
+        muscle.transform.localScale = Vector3.one;
+        skin.transform.localScale = Vector3.one;
+        coccyx.transform.localScale = Vector3.one;
+        colon.transform.localScale = Vector3.one;
+        prostate.transform.localScale = Vector3.one;
+
+        bone.transform.localEulerAngles = Vector3.zero;
+        urinary.transform.localEulerAngles = Vector3.zero;
+        repro.transform.localEulerAngles = Vector3.zero;
+        muscle.transform.localEulerAngles = Vector3.zero;
+        skin.transform.localEulerAngles = Vector3.zero;
+        coccyx.transform.localEulerAngles = Vector3.zero;
+        colon.transform.localEulerAngles = Vector3.zero;
+        prostate.transform.localEulerAngles = Vector3.zero;
+    }
+
     private void SetBenchtopVisiblewithMaterial(bool isVisible, Material material)
     {
         SetVisibleDRE(isVisible);
@@ -79,6 +111,7 @@ public class GroupAnatomy : MonoBehaviour
         DRERectumRenderer.material = material;
         coccyxRenderer.material = material;
 
+        //ToggleTooltip(false);
         ToggleTooltip(!isVisible);
     }
 
