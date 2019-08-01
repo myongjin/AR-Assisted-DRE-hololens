@@ -40,6 +40,11 @@ public class ModelAlignment : MonoBehaviour
 
     #region PUBLIC_METHOD
 
+    public void RestartAlignment()
+    {
+        GameManager.SetAlignModelGameStage();
+    }
+
     public void RegisterRealLandmark()
     {
         Debug.Log("Register Landmark: " + LandmarkCount);
@@ -73,6 +78,8 @@ public class ModelAlignment : MonoBehaviour
         // rotate model
         Quaternion rotation = kabschTranform.GetQuaternion();
         model.RotateAroundPivot(afterCentroid, rotation);
+
+        GameManager.AdvanceGameStage();
     }
 
     #endregion

@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using HoloToolkit.Examples.InteractiveElements;
+using UnityEngine;
 
 public class UISwitcher : MonoBehaviour
 {
     public GameObject ErrorPanel;
     public GameObject TrainingPanel;
+    public Interactive ReAlignButton; 
 
     private Game game;
 
@@ -19,6 +21,7 @@ public class UISwitcher : MonoBehaviour
     {
         ErrorPanel.SetActive(gameStage == GameStage.AlignModel);
         TrainingPanel.SetActive(gameStage == GameStage.StartTraining);
+        ReAlignButton.IsEnabled = (gameStage == GameStage.StartTraining);
     }
 
     // Update is called once per frame
