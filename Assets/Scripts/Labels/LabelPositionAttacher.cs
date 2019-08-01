@@ -25,6 +25,7 @@ public class LabelPositionAttacher : MonoBehaviour
     [SerializeField]
     private float offsetAngle = 1f;
     public Transform centre;
+    public Transform pelvicAnatomy;
 
     private Camera cam;
     private Vector3 normal;
@@ -69,6 +70,16 @@ public class LabelPositionAttacher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // check if each organ has moved or not
+        foreach (Transform child in pelvicAnatomy)
+        {
+            if (child.gameObject.name == "Others") continue;
+            if (child.localPosition.magnitude > 0)
+            {
+                return;
+            }
+        }
+
         normal = cam.transform.position - centre.position;
 
         CalculateAngles();
