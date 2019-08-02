@@ -2,88 +2,120 @@
 
 public class BenchtopViewSwitcher : MonoBehaviour
 {
-    public GameObject pelvicAnatomy;
+    [SerializeField]
+    private GameObject pelvicAnatomy;
+    [SerializeField]
+    private GameObject benchtop;
+    [SerializeField]
+    private GameObject landmarks;
+    [SerializeField]
+    private Renderer skin;
+    [SerializeField]
+    private Material originalSkin;
+    [SerializeField]
+    private Material DRESkin;
 
     private Game game;
-    private GroupAnatomy groupAnatomy;
+    private GameObject[] prostates;
 
     // Use this for initialization
     void Start()
     {
+        prostates = GameObject.FindGameObjectsWithTag("Prostate");
+
         game = Game.Instance;
 
         game.OnModelViewChange += OnModelViewChange;
         game.OnProstateChange += OnProstateChange;
 
-        groupAnatomy = pelvicAnatomy.GetComponent<GroupAnatomy>();
+        game.Prostate = ProstateType.Normal;
+        ShowSkin();
 
-        if (groupAnatomy == null)
-        {
-            Debug.Log("GroupAnatomy is not attached to PelvicAnatomy GameObject");
-        }
-        else
-        {
-            // start with normal benchtop
-            ShowSkin();
-        }
     }
 
     private void OnProstateChange(ProstateType prostate)
     {
-        if (groupAnatomy != null)
-        {
-            Debug.Log(prostate.ToString());
-            groupAnatomy.ShowProstate(prostate.ToString());
-        }
+        SetProstate(prostate);
     }
 
     private void OnModelViewChange(ModelView modelView)
     {
-        if (groupAnatomy != null)
+        Debug.Log(modelView);
+        switch (modelView)
         {
-            Debug.Log(modelView);
-            switch (modelView)
-            {
-                case ModelView.Skin:
-                    ShowSkin();
-                    break;
-                case ModelView.Prostate:
-                    ShowProstate();
-                    break;
-                case ModelView.Anatomy:
-                    ShowAnatomy();
-                    break;
-                default:
-                    ShowSkin();
-                    break;
-            }
+            case ModelView.Skin:
+                ShowSkin();
+                break;
+            case ModelView.Prostate:
+                ShowProstate();
+                break;
+            case ModelView.Anatomy:
+                ShowAnatomy();
+                break;
         }
     }
 
     public void ShowSkin()
     {
-        if (groupAnatomy != null)
-        {
-            groupAnatomy.ShowNormalBenchtop();
-            groupAnatomy.ShowProstate(game.Prostate.ToString());
-        }
+        // show skin
+        skin.material = originalSkin;
+
+        // show benchtop
+        // show landmark
+        // disable pelvic anatomy
+        SetVisibleBenchtop(true);
+
+        // set prostate
+        SetProstate(game.Prostate);
     }
 
     public void ShowProstate()
     {
-        if (groupAnatomy != null)
-        {
-            groupAnatomy.ShowTransparentBenchtop();
-            groupAnatomy.ShowProstate(game.Prostate.ToString());
-        }
+        // show transparent skin
+        skin.material = DRESkin;
+
+        // show benchtop
+        // show landmark
+        // disable pelvic anatomy
+        SetVisibleBenchtop(true);
+
+        // set prostate
+        SetProstate(game.Prostate);
     }
 
     public void ShowAnatomy()
     {
-        if (groupAnatomy != null)
+        // show transparent skin
+        skin.material = DRESkin;
+
+        // disable benchtop
+        // disable landmark
+        // show pelvic anatomy
+        SetVisibleBenchtop(false);
+
+        // set prostate
+        SetProstate(game.Prostate);
+    }
+
+    private void SetVisibleBenchtop(bool showBenchtop)
+    {
+        // show benchtop
+        // show landmark
+        // disable pelvic anatomy
+        benchtop.SetActive(showBenchtop);
+        landmarks.SetActive(showBenchtop);
+        pelvicAnatomy.SetActive(!showBenchtop);
+    }
+
+    private void SetProstate(ProstateType prostateType)
+    {
+        foreach (GameObject prostate in prostates)
         {
-            groupAnatomy.ShowTransparentAnatomy();
-            groupAnatomy.ShowProstate(game.Prostate.ToString());
+            foreach (Transform child in prostate.transform)
+            {
+                child.gameObject.SetActive(child.gameObject.name == prostateType.ToString());
+                if (child.gameObject.name == "collision") child.gameObject.SetActive(true);
+            }
         }
     }
 }

@@ -70,6 +70,9 @@ public class LabelPositionAttacher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // check if it is tutorial mode or not
+        if (Game.Instance.ModelView != ModelView.Anatomy) return;
+
         // check if each organ has moved or not
         foreach (Transform child in pelvicAnatomy)
         {
