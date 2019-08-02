@@ -1,16 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class RectumTrigger : MonoBehaviour
+public class CoccyxTrigger : MonoBehaviour
 {
 
     // Use this for initialization
-    private void Start()
+    void Start()
     {
 
     }
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
 
     }
@@ -20,9 +22,9 @@ public class RectumTrigger : MonoBehaviour
         if (other.gameObject.name != "Finger") return;
         if (Game.Instance.GameStage != GameStage.StartTraining) return;
 
-        if (Game.Instance.DREStage == DREStage.Anus)
+        if (Game.Instance.DREStage == DREStage.Rectum)
         {
-            Game.Instance.DREStage = DREStage.Rectum;
+            Game.Instance.DREStage = DREStage.Coccyx;
         }
     }
 }

@@ -20,10 +20,11 @@ public class AnusTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name != "Finger") return;
-        if (Game.Instance.GameStage == GameStage.StartTraining) return;
+        if (Game.Instance.GameStage != GameStage.StartTraining) return;
 
         if (Game.Instance.DREStage == DREStage.Start)
         {
+            Debug.Log("Anus");
             Game.Instance.DREStage = DREStage.Anus;
         }
     }
@@ -31,7 +32,7 @@ public class AnusTrigger : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.name != "Finger") return;
-        if (Game.Instance.GameStage == GameStage.StartTraining) return;
+        if (Game.Instance.GameStage != GameStage.StartTraining) return;
 
         if (Game.Instance.DREStage == DREStage.PalpateProstate)
         {
