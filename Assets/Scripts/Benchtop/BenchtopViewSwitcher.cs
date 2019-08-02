@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using HoloToolkit.Unity.InputModule.Utilities.Interactions;
+using UnityEngine;
 
 public class BenchtopViewSwitcher : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class BenchtopViewSwitcher : MonoBehaviour
     private Material originalSkin;
     [SerializeField]
     private Material DRESkin;
+    [SerializeField]
+    private TwoHandManipulatable skinTwoHand;
 
     private Game game;
     private GameObject[] prostates;
@@ -105,6 +108,7 @@ public class BenchtopViewSwitcher : MonoBehaviour
         benchtop.SetActive(showBenchtop);
         landmarks.SetActive(showBenchtop);
         pelvicAnatomy.SetActive(!showBenchtop);
+        skinTwoHand.enabled = !showBenchtop;
     }
 
     private void SetProstate(ProstateType prostateType)
