@@ -22,7 +22,7 @@ MonoBehaviour:
   ChevronLeft: {fileID: 0}
   ChevronRight: {fileID: 0}
   Forward: {fileID: 0}
-  Back: {fileID: 0}
+  Back: {fileID: 2800000, guid: 844c611d8989e904cba0fd67b9536d11, type: 3}
   PageLeft: {fileID: 0}
   PageRight: {fileID: 0}
   Add: {fileID: 0}
@@ -61,3 +61,4 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 8867ef317bf86c142897904dbb7a1ac6, type: 3}
   - {fileID: 2800000, guid: 1756676fd64b61e4a914ffa70233b9a6, type: 3}
   - {fileID: 2800000, guid: 7029cbbbce5f0ac4dbc4e93267bfddf4, type: 3}
+  - {fileID: 2800000, guid: ec8b4073237c9724ba8422f71fda3694, type: 3}

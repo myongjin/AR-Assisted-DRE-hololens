@@ -14,10 +14,7 @@ using Vuforia;
 /// </summary>
 public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 {
-    public GameObject recalibrateButton;
-    //public Transform worldStage;
-
-    private TransmitterPlacement transmitterPlacement;
+    public TransmitterPlacement transmitterPlacement;
 
     #region PROTECTED_MEMBER_VARIABLES
 
@@ -32,8 +29,6 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         if (mTrackableBehaviour)
             mTrackableBehaviour.RegisterTrackableEventHandler(this);
-
-        transmitterPlacement = recalibrateButton.GetComponent<TransmitterPlacement>();
     }
 
     protected virtual void OnDestroy()

@@ -9,6 +9,8 @@ public class UISwitcher : MonoBehaviour
 
     private Game game;
 
+    private bool showMenu = false;
+
     // Use this for initialization
     private void Start()
     {
@@ -19,14 +21,26 @@ public class UISwitcher : MonoBehaviour
 
     private void OnGameStageChange(GameStage gameStage)
     {
-        ErrorPanel.SetActive(gameStage == GameStage.AlignModel);
-        TrainingPanel.SetActive(gameStage == GameStage.StartTraining);
-        ReAlignButton.IsEnabled = (gameStage == GameStage.StartTraining);
+        SetMenuPanel(gameStage);
+    }
+
+    private void SetMenuPanel(GameStage gameStage)
+    {
+        //ErrorPanel.SetActive(gameStage == GameStage.AlignModel);
+        //TrainingPanel.SetActive(gameStage == GameStage.StartTraining);
+        //ReAlignButton.IsEnabled = (gameStage == GameStage.StartTraining);
     }
 
     // Update is called once per frame
     private void Update()
     {
 
+    }
+
+    public void ToggleMenuVisible()
+    {
+        showMenu = !showMenu;
+        gameObject.SetActive(showMenu);
+        SetMenuPanel(game.GameStage);
     }
 }

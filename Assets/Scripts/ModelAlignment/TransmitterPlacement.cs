@@ -5,6 +5,9 @@ using Vuforia;
 public class TransmitterPlacement : MonoBehaviour
 {
     public Transform WorldStage;
+    public GameObject BenchtopModel;
+    public GameObject Finger;
+    public TextMesh transmitterRegistrationText;
 
     private InteractiveToggle interactive;
 
@@ -15,8 +18,12 @@ public class TransmitterPlacement : MonoBehaviour
 
     public void SetTransmitterPosition(Transform targetTransform)
     {
+        transmitterRegistrationText.text = "Transmitter Found!";
         WorldStage.position = targetTransform.position;
         WorldStage.rotation = targetTransform.rotation;
+
+        Finger.SetActive(true);
+        BenchtopModel.SetActive(true);
 
         GameManager.SetAlignModelGameStage();
         TrackerManager.Instance.GetTracker<ObjectTracker>().Stop();
@@ -25,6 +32,7 @@ public class TransmitterPlacement : MonoBehaviour
 
     public void RestartTransmitterTracking()
     {
+        transmitterRegistrationText.text = "Finding Transmitter..";
         TrackerManager.Instance.GetTracker<ObjectTracker>().Start();
     }
 

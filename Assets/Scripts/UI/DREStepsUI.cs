@@ -32,5 +32,10 @@ public class DREStepsUI : MonoBehaviour
         {
             interactiveToggles[i].HasSelection = true;
         }
+
+        for (int i = (int)dreStage; i < System.Enum.GetValues(typeof(DREStage)).Length; i++)
+        {
+            interactiveToggles[i].HasSelection = false;
+        }
     }
 }

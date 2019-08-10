@@ -9,4 +9,10 @@
     {
         Game.Instance.GameStage = GameStage.AlignModel;
     }
+
+    public static void SetStartTrainingGameStage()
+    {
+        Game.Instance.GameStage = GameStage.StartTraining;
+        Game.Instance.DREStage = DREStage.Start;
+    }
 }
