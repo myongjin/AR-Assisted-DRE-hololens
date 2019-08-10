@@ -13,7 +13,8 @@ struct TooltipPosition
 
 public class LabelPositionAttacher : MonoBehaviour
 {
-
+    [SerializeField]
+    private bool showLabels = false;
     [SerializeField]
     private float timeStart = 1f;
     [SerializeField]
@@ -65,11 +66,15 @@ public class LabelPositionAttacher : MonoBehaviour
             }
             i += 1;
         }
+
+        // Hide labless
+        SetShowLabel(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!showLabels) return;
         // check if it is tutorial mode or not
         if (Game.Instance.ModelView != ModelView.Anatomy) return;
 
@@ -218,5 +223,15 @@ public class LabelPositionAttacher : MonoBehaviour
     private Vector3 AnchorToPivotVector(int elem)
     {
         return tooltipPositioners[elem].positioner.pivotPosition - tooltipPositioners[elem].positioner.anchor.position;
+    }
+
+    public void SetShowLabel(bool show)
+    {
+        showLabels = show;
+
+        foreach (GameObject tooltip in tooltips)
+        {
+            tooltip.SetActive(show);
+        }
     }
 }
