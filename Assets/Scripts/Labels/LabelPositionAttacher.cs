@@ -234,4 +234,9 @@ public class LabelPositionAttacher : MonoBehaviour
             tooltip.SetActive(show);
         }
     }
+
+    public bool GetShowLabel()
+    {
+        return showLabels;
+    }
 }
