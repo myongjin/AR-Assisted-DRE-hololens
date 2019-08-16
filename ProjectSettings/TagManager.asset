@@ -8,6 +8,7 @@ TagManager:
   - AnatomyAnimation
   - CheckBox
   - Prostate
+  - BenchToolTip
   layers:
   - Default
   - TransparentFX

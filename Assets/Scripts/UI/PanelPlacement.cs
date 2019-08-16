@@ -5,8 +5,6 @@ using UnityEngine;
 public class PanelPlacement : MonoBehaviour
 {
     [SerializeField]
-    private LabelPositionAttacher attacher;
-    [SerializeField]
     private Transform benchtop;
     [SerializeField]
     private Vector3 labelOffset = new Vector3(-0.3f, 0, 0);
@@ -24,7 +22,7 @@ public class PanelPlacement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (attacher.GetShowLabel())
+        if (GameManager.Instance.ShowLabel)
         {
             offset = labelOffset;
         }

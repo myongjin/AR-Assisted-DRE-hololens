@@ -25,7 +25,6 @@ public class TransmitterPlacement : MonoBehaviour
         Finger.SetActive(true);
         BenchtopModel.SetActive(true);
 
-        GameManager.SetAlignModelGameStage();
         TrackerManager.Instance.GetTracker<ObjectTracker>().Stop();
         interactive.HasSelection = false;
     }

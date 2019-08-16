@@ -26,7 +26,7 @@ public class BenchtopSharing : MonoBehaviour
     private void processTransform(NetworkInMessage msg)
     {
         long userID = msg.ReadInt64();         var position = CustomMessages.Instance.ReadVector3(msg);         var rotation = CustomMessages.Instance.ReadQuaternion(msg);
-
+        
         if (!IsManipulated)
         {
             transform.localPosition = position;

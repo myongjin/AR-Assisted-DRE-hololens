@@ -18,11 +18,10 @@ public class RectumTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name != "Finger") return;
-        if (Game.Instance.GameStage != GameStage.StartTraining) return;
 
-        if (Game.Instance.DREStage == DREStage.Anus)
+        if (GameManager.Instance.DREStage == DREStage.Anus)
         {
-            Game.Instance.DREStage = DREStage.Rectum;
+            GameManager.Instance.DREStage = DREStage.Rectum;
         }
     }
 }

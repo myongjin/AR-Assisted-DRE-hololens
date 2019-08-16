@@ -12,6 +12,8 @@ public class LabelPositionCalculator : MonoBehaviour
     public float objectRadius;
     public Vector3 pivotPosition;
     public Vector3 ProjectedPivot;
+    public Vector3 ProposedPivotPosition;
+    public float speed = 0.2f;
 
     private Camera cam;
     private Vector3 normal;
@@ -25,7 +27,9 @@ public class LabelPositionCalculator : MonoBehaviour
     private void Start ()
     {
         cam = Camera.main;
-	}
+        ProposedPivotPosition = pivot.position;
+
+    }
 	
 	// Update is called once per frame
     private void Update ()
@@ -41,5 +45,7 @@ public class LabelPositionCalculator : MonoBehaviour
         pivotPosition = projectedCentre + normalDirection * objectRadius;
 
         ProjectedPivot = plane.ClosestPointOnPlane(pivot.position);
+
+        pivot.position = Vector3.Lerp(pivot.position, ProposedPivotPosition, speed);
     }
 }

@@ -20,11 +20,10 @@ public class CoccyxTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name != "Finger") return;
-        if (Game.Instance.GameStage != GameStage.StartTraining) return;
 
-        if (Game.Instance.DREStage == DREStage.Rectum)
+        if (GameManager.Instance.DREStage == DREStage.Rectum)
         {
-            Game.Instance.DREStage = DREStage.Coccyx;
+            GameManager.Instance.DREStage = DREStage.Coccyx;
         }
     }
 }

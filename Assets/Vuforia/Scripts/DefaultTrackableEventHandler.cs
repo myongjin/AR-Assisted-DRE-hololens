@@ -6,6 +6,7 @@ All Rights Reserved.
 Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
+using System;
 using UnityEngine;
 using Vuforia;
 
@@ -56,13 +57,8 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
             OnTrackingFound();
 
+            GameManager.Instance.IsTransmitterFound = true;
             transmitterPlacement.SetTransmitterPosition(transform);
-
-            //worldStage.position = transform.position;
-            //worldStage.rotation = transform.rotation;
-
-            //GameManager.SetGameStage();
-            //TrackerManager.Instance.GetTracker<ObjectTracker>().Stop();
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NOT_FOUND)

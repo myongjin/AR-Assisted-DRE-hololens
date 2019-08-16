@@ -7,28 +7,14 @@ public class UISwitcher : MonoBehaviour
     public GameObject TrainingPanel;
     public Interactive ReAlignButton; 
 
-    private Game game;
+    private GameManager game;
 
     private bool showMenu = false;
 
     // Use this for initialization
     private void Start()
     {
-        game = Game.Instance;
-
-        game.OnGameStageChange += OnGameStageChange;
-    }
-
-    private void OnGameStageChange(GameStage gameStage)
-    {
-        SetMenuPanel(gameStage);
-    }
-
-    private void SetMenuPanel(GameStage gameStage)
-    {
-        //ErrorPanel.SetActive(gameStage == GameStage.AlignModel);
-        //TrainingPanel.SetActive(gameStage == GameStage.StartTraining);
-        //ReAlignButton.IsEnabled = (gameStage == GameStage.StartTraining);
+        game = GameManager.Instance;
     }
 
     // Update is called once per frame
@@ -41,6 +27,5 @@ public class UISwitcher : MonoBehaviour
     {
         showMenu = !showMenu;
         gameObject.SetActive(showMenu);
-        SetMenuPanel(game.GameStage);
     }
 }

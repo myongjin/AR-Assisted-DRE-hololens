@@ -31,8 +31,9 @@ public class LabelPositionAttacher : MonoBehaviour
     private Camera cam;
     private Vector3 normal;
 
-    private GameObject[] tooltips;
+    private List<GameObject> tooltips = new List<GameObject>();
     private TooltipPosition[] tooltipPositioners;
+    private BenchtopLabelManagement benchtopLabelManagement;
     //private LabelPositionCalculator[] positioners;
     //private float[] angles;
 
@@ -41,13 +42,37 @@ public class LabelPositionAttacher : MonoBehaviour
     {
         cam = Camera.main;
 
-        tooltips = GameObject.FindGameObjectsWithTag("ToolTip");
-        tooltipPositioners = new TooltipPosition[tooltips.Length];
+        benchtopLabelManagement = GetComponent<BenchtopLabelManagement>();
+
+        SetActiveToolTips();
+    }
+
+    public void SetActiveToolTips()
+    {
+        tooltips.Clear();
+        foreach (GameObject tooltip in benchtopLabelManagement.tooltips)
+        {
+            if (tooltip.activeInHierarchy)
+            {
+                tooltips.Add(tooltip);
+            }
+        }
+
+        //foreach (GameObject tooltip in benchtopLabelManagement.tooltips)
+        //{
+        //    tooltips.Add(tooltip);
+        //}
+
+        Debug.Log("Length: " + tooltips.Count);
+        tooltipPositioners = new TooltipPosition[tooltips.Count];
         //angles = new float[tooltips.Length];
         int i = 0;
         foreach (GameObject tooltip in tooltips)
         {
-            tooltip.AddComponent<LabelPositionCalculator>();
+            if (tooltip.GetComponent<LabelPositionCalculator>() == null)
+            {
+                tooltip.AddComponent<LabelPositionCalculator>();
+            }
             tooltipPositioners[i].positioner = tooltip.GetComponent<LabelPositionCalculator>();
             tooltipPositioners[i].positioner.objectRadius = 0.33f;
             tooltipPositioners[i].positioner.centre = centre;
@@ -66,27 +91,12 @@ public class LabelPositionAttacher : MonoBehaviour
             }
             i += 1;
         }
-
-        // Hide labless
-        SetShowLabel(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!showLabels) return;
-        // check if it is tutorial mode or not
-        if (Game.Instance.ModelView != ModelView.Anatomy) return;
-
-        // check if each organ has moved or not
-        foreach (Transform child in pelvicAnatomy)
-        {
-            if (child.gameObject.name == "Others") continue;
-            if (child.localPosition.magnitude > 0)
-            {
-                return;
-            }
-        }
+        //if (!showLabels) return;
 
         normal = cam.transform.position - centre.position;
 
@@ -123,10 +133,10 @@ public class LabelPositionAttacher : MonoBehaviour
     private bool GetOcclusion()
     {
 
-        for (var i = 0; i < tooltips.Length; i++)
+        for (var i = 0; i < tooltips.Count; i++)
         {
-            var prev = (i - 1 + tooltips.Length) % tooltips.Length;
-            var next = (i + 1) % tooltips.Length;
+            var prev = (i - 1 + tooltips.Count) % tooltips.Count;
+            var next = (i + 1) % tooltips.Count;
 
             var currentPrev2DDistance = Pivot2DDistance(i, prev);
             var currentNext2DDistance = Pivot2DDistance(i, next);
@@ -146,14 +156,14 @@ public class LabelPositionAttacher : MonoBehaviour
         {
             occlusionResolved = true;
             CalculateAngles();
-            
+
             for (int i = 0; i < tooltipPositioners.Length; i++)
             {
                 bool isOccludded = false;
                 float moveAngle = 0.0f;
-                
-                var prev = (i - 1 + tooltips.Length) % tooltips.Length;
-                var next = (i + 1) % tooltips.Length;
+
+                var prev = (i - 1 + tooltips.Count) % tooltips.Count;
+                var next = (i + 1) % tooltips.Count;
 
                 var currentPrevCalculated2DDistance = CalculatedPivot2DDistance(i, prev);
                 var currentNextCalculated2DDistance = CalculatedPivot2DDistance(i, next);
@@ -177,13 +187,13 @@ public class LabelPositionAttacher : MonoBehaviour
 
                 if (!isOccludded)
                 {
-                    tooltipPositioners[i].positioner.pivot.position = tooltipPositioners[i].positioner.pivotPosition;
+                    tooltipPositioners[i].positioner.ProposedPivotPosition = tooltipPositioners[i].positioner.pivotPosition;
                 }
                 else
                 {
                     Quaternion pivotRotation = Quaternion.AngleAxis(moveAngle, normal);
                     tooltipPositioners[i].positioner.pivotPosition = tooltipPositioners[i].positioner.pivotPosition.RotateAroundPivot(centre.position, pivotRotation);
-                    tooltipPositioners[i].positioner.pivot.position = tooltipPositioners[i].positioner.pivotPosition;
+                    tooltipPositioners[i].positioner.ProposedPivotPosition = tooltipPositioners[i].positioner.pivotPosition;
                 }
                 occlusionResolved &= !isOccludded;
 
@@ -197,7 +207,7 @@ public class LabelPositionAttacher : MonoBehaviour
         Quaternion rotation = Quaternion.FromToRotation(normal, Vector3.back);
         Matrix4x4 m = Matrix4x4.Rotate(rotation);
 
-        for (int i = 0; i < tooltips.Length; i++)
+        for (int i = 0; i < tooltips.Count; i++)
         {
             tooltipPositioners[i].angle = Vector3.SignedAngle(AnchorToPivotVector(0), AnchorToPivotVector(i), normal);
             if (tooltipPositioners[i].angle < 0)
@@ -222,17 +232,11 @@ public class LabelPositionAttacher : MonoBehaviour
 
     private Vector3 AnchorToPivotVector(int elem)
     {
-        return tooltipPositioners[elem].positioner.pivotPosition - tooltipPositioners[elem].positioner.anchor.position;
-    }
-
-    public void SetShowLabel(bool show)
-    {
-        showLabels = show;
-
-        foreach (GameObject tooltip in tooltips)
+        if (tooltipPositioners[elem].positioner == null)
         {
-            tooltip.SetActive(show);
+            Debug.Log(tooltips[elem].name);
         }
+        return tooltipPositioners[elem].positioner.pivotPosition - tooltipPositioners[elem].positioner.anchor.position;
     }
 
     public bool GetShowLabel()

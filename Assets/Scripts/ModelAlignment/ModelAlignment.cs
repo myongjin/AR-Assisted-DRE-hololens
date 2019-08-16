@@ -18,6 +18,8 @@ public class ModelAlignment : MonoBehaviour
     public TextMesh registerButtonText;
     public TextMesh currentLandmarkText;
 
+    public BenchtopSharing benchtopSharing;
+
     public int LandmarkCount { get; private set; }
 
     // Use this for initialization
@@ -42,7 +44,7 @@ public class ModelAlignment : MonoBehaviour
 
     public void RestartAlignment()
     {
-        GameManager.SetAlignModelGameStage();
+
     }
 
     public void RegisterRealLandmark()
@@ -55,6 +57,7 @@ public class ModelAlignment : MonoBehaviour
     public void AlignModel()
     {
         Debug.Log("Align Model");
+        benchtopSharing.IsManipulated = true;
         virtualLandmarkPositions = GetAllLandmarkPositions(virtualLandmarks);
 
         for (int i = 0; i < virtualLandmarks.Length; i++)
@@ -78,8 +81,6 @@ public class ModelAlignment : MonoBehaviour
         // rotate model
         Quaternion rotation = kabschTranform.GetQuaternion();
         model.RotateAroundPivot(afterCentroid, rotation);
-
-        GameManager.AdvanceGameStage();
     }
 
     #endregion

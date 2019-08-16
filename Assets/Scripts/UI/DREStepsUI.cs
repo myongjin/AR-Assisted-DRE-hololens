@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class DREStepsUI : MonoBehaviour
 {
-    private Game game;
+    private GameManager game;
     private InteractiveSet interactiveSet;
     private List<InteractiveToggle> interactiveToggles;
 
     // Use this for initialization
     private void Start()
     {
-        game = Game.Instance;
+        game = GameManager.Instance;
         game.OnDREStageChange += OnDREStageChange;
 
         interactiveSet = GetComponent<InteractiveSet>();

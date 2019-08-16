@@ -20,25 +20,23 @@ public class ProstateTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name != "Finger") return;
-        if (Game.Instance.GameStage != GameStage.StartTraining) return;
 
-        if (Game.Instance.DREStage == DREStage.Coccyx)
+        if (GameManager.Instance.DREStage == DREStage.Coccyx)
         {
-            Game.Instance.DREStage = DREStage.Prostate;
+            GameManager.Instance.DREStage = DREStage.Prostate;
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.name != "Finger") return;
-        if (Game.Instance.GameStage != GameStage.StartTraining) return;
 
-        if (Game.Instance.DREStage == DREStage.Prostate)
+        if (GameManager.Instance.DREStage == DREStage.Prostate)
         {
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0)
             {
-                Game.Instance.DREStage = DREStage.PalpateProstate;
+                GameManager.Instance.DREStage = DREStage.PalpateProstate;
             }
         }
 
