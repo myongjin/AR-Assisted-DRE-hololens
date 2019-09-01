@@ -2,8 +2,8 @@
 
 public class ModelAlignment : MonoBehaviour
 {
-
-    public Transform positionSensor;
+    public bool useFinger = false;
+    public Transform[] positionSensor;
     public Transform model;
     public Transform[] virtualLandmarks;
 
@@ -29,6 +29,8 @@ public class ModelAlignment : MonoBehaviour
         realLandmarkPositions = new Vector3[virtualLandmarks.Length];
         refPoints = new Vector4[virtualLandmarks.Length];
         LandmarkCount = 0;
+
+        virtualLandmarkPositions = GetAllLandmarkPositions(virtualLandmarks);
     }
 
     // Update is called once per frame
@@ -44,13 +46,20 @@ public class ModelAlignment : MonoBehaviour
 
     public void RestartAlignment()
     {
+        LandmarkCount = 0;
+    }
 
+    public void AlignWithFinger(bool withFinger)
+    {
+        useFinger = withFinger;
     }
 
     public void RegisterRealLandmark()
     {
+        int sensorNumber = useFinger ? 0 : 1;
         Debug.Log("Register Landmark: " + LandmarkCount);
-        realLandmarkPositions[LandmarkCount++] = positionSensor.position;
+        Debug.Log("V: " + virtualLandmarkPositions[LandmarkCount].ToString("F2") + " R: " + positionSensor[sensorNumber].position.ToString("F2"));
+        realLandmarkPositions[LandmarkCount++] = positionSensor[sensorNumber].position;
         LandmarkCount %= virtualLandmarks.Length;
     }
 
@@ -81,6 +90,18 @@ public class ModelAlignment : MonoBehaviour
         // rotate model
         Quaternion rotation = kabschTranform.GetQuaternion();
         model.RotateAroundPivot(afterCentroid, rotation);
+    }
+
+    public void SaveModelLocation()
+    {
+        PlayerPrefHelper.SaveBenchtopTransform(model.localPosition, model.localRotation);
+    }
+
+    public void LoadModelLocation()
+    {
+        benchtopSharing.IsManipulated = true;
+        model.localPosition = PlayerPrefHelper.LoadBenchtopPosition();
+        model.localRotation = PlayerPrefHelper.LoadBenchtopRotation();
     }
 
     #endregion
@@ -122,7 +143,8 @@ public class ModelAlignment : MonoBehaviour
         {
             landmarkInfoString += (i + 1).ToString();
             landmarkInfoString += ": ";
-            landmarkInfoString += AlignmentHelper.GetDistanceBetweenPoints(virtualLandmarkPositions[i], realLandmarkPositions[i]).ToString("F2");
+            landmarkInfoString += (virtualLandmarkPositions[i] - realLandmarkPositions[i]).ToString("F4");
+            //landmarkInfoString += AlignmentHelper.GetDistanceBetweenPoints(virtualLandmarkPositions[i], realLandmarkPositions[i]).ToString("F2");
             landmarkInfoString += " ";
             landmarkInfoString += realLandmarkPositions[i].ToString("F2");
             landmarkInfoString += "\n";

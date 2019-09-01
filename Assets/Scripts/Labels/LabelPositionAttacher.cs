@@ -27,6 +27,8 @@ public class LabelPositionAttacher : MonoBehaviour
     private float offsetAngle = 1f;
     public Transform centre;
     public Transform pelvicAnatomy;
+    public float ThresholdAngle = 0f;
+    private Vector3 lastNotOccludedCamPos = Vector3.zero;
 
     private Camera cam;
     private Vector3 normal;
@@ -106,16 +108,19 @@ public class LabelPositionAttacher : MonoBehaviour
 
         if (GetOcclusion())
         {
-            timeLeft -= Time.deltaTime;
 
-            if (timeLeft < 0)
+            if (Vector3.Angle(lastNotOccludedCamPos, normal) > ThresholdAngle)
             {
                 // fix occlusion
                 FixOcclusion();
-
-                timeLeft = timeStart;
             }
+
+        } else
+        {
+            lastNotOccludedCamPos = normal;
         }
+
+
 
     }
 

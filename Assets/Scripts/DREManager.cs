@@ -17,6 +17,6 @@ public class DREManager : MonoBehaviour
 
     public void RestartDRETraining()
     {
-        //GameSetter.SetStartTrainingGameStage();
+        GameManager.Instance.DREStage = DREStage.Start;
     }
 }

@@ -3,7 +3,7 @@
 public class ProstateTrigger : MonoBehaviour
 {
     [SerializeField]
-    private float timeLeft = 10f;
+    private float timeLeft = 3f;
 
     // Use this for initialization
     private void Start()

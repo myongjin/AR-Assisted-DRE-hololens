@@ -28,7 +28,6 @@ public class LabelPositionCalculator : MonoBehaviour
     {
         cam = Camera.main;
         ProposedPivotPosition = pivot.position;
-
     }
 	
 	// Update is called once per frame
