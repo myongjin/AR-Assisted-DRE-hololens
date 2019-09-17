@@ -19,7 +19,7 @@ public class CoccyxTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name != "Finger") return;
+        if (!other.gameObject.CompareTag("Finger")) return;
 
         if (GameManager.Instance.DREStage == DREStage.Rectum)
         {

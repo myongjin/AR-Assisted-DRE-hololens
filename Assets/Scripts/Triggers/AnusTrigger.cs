@@ -19,7 +19,7 @@ public class AnusTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name != "Finger") return;
+        if (!other.gameObject.CompareTag("Finger")) return;
 
         if (GameManager.Instance.DREStage == DREStage.Start)
         {
@@ -30,10 +30,11 @@ public class AnusTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name != "Finger") return;
+        if (!other.gameObject.CompareTag("Finger")) return;
 
         if (GameManager.Instance.DREStage == DREStage.PalpateProstate)
         {
+            Debug.Log("AnusOut");
             GameManager.Instance.DREStage = DREStage.Remove;
         }
     }
