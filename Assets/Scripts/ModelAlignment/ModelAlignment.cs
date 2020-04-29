@@ -9,8 +9,12 @@ public class ModelAlignment : MonoBehaviour
 
     private Vector3[] virtualLandmarkPositions;
     private Vector4[] refPoints;
+
+    //for test
+    public Transform[] realLandMarks;
     private Vector3[] realLandmarkPositions;
 
+    //a math class to compute center position and orientation
     KabschSolver solver = new KabschSolver();
 
     public GameObject landmarkInfoObject;
@@ -25,12 +29,18 @@ public class ModelAlignment : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //Assign variables
         virtualLandmarkPositions = new Vector3[virtualLandmarks.Length];
         realLandmarkPositions = new Vector3[virtualLandmarks.Length];
         refPoints = new Vector4[virtualLandmarks.Length];
         LandmarkCount = 0;
 
+        //virtualLandmarks[0].position;
+
         virtualLandmarkPositions = GetAllLandmarkPositions(virtualLandmarks);
+
+        //Debug
+        realLandmarkPositions = GetAllLandmarkPositions(realLandMarks);
     }
 
     // Update is called once per frame
@@ -56,6 +66,7 @@ public class ModelAlignment : MonoBehaviour
 
     public void RegisterRealLandmark()
     {
+        //if use Finger then set the index of sensor to zero
         int sensorNumber = useFinger ? 0 : 1;
         Debug.Log("Register Landmark: " + LandmarkCount);
         Debug.Log("V: " + virtualLandmarkPositions[LandmarkCount].ToString("F2") + " R: " + positionSensor[sensorNumber].position.ToString("F2"));
@@ -63,6 +74,7 @@ public class ModelAlignment : MonoBehaviour
         LandmarkCount %= virtualLandmarks.Length;
     }
 
+    //This function is called when align buttion is clicked.
     public void AlignModel()
     {
         Debug.Log("Align Model");
@@ -72,17 +84,20 @@ public class ModelAlignment : MonoBehaviour
         for (int i = 0; i < virtualLandmarks.Length; i++)
         {
             refPoints[i] = new Vector4(realLandmarkPositions[i].x, realLandmarkPositions[i].y, realLandmarkPositions[i].z, 1);
+            Debug.Log(refPoints[i]);
         }
 
         Matrix4x4 kabschTranform = solver.SolveKabsch(virtualLandmarkPositions, refPoints);
 
         Vector3 beforeCentroid = AlignmentHelper.GetCentroidPosition(virtualLandmarkPositions);
+        Debug.Log("Before Centroid" + beforeCentroid);
 
         for (int i = 0; i < virtualLandmarks.Length; i++)
         {
             virtualLandmarkPositions[i] = kabschTranform.MultiplyPoint3x4(virtualLandmarkPositions[i]);
         }
         Vector3 afterCentroid = AlignmentHelper.GetCentroidPosition(virtualLandmarkPositions);
+        Debug.Log("After Centroid" + beforeCentroid);
 
         // translate model
         model.position += afterCentroid - beforeCentroid;
@@ -111,9 +126,9 @@ public class ModelAlignment : MonoBehaviour
     private Vector3[] GetAllLandmarkPositions(Transform[] landmarks)
     {
         Vector3[] positions = new Vector3[landmarks.Length];
-        for (int i = 0; i < virtualLandmarks.Length; i++)
+        for (int i = 0; i < landmarks.Length; i++)
         {
-            positions[i] = virtualLandmarks[i].position;
+            positions[i] = landmarks[i].position;
         }
 
         return positions;

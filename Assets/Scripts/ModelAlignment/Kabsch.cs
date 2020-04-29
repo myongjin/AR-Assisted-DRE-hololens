@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Profiling;
 
+// it looks like a math class
 public class KabschSolver
 {
 

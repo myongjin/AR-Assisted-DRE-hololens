@@ -18,7 +18,10 @@ public class ProstateReceiver : MonoBehaviour
     public void ProcessProstate(NetworkInMessage msg)
     {
         long userID = msg.ReadInt64();
-        var prostate = CustomMessages.Instance.ReadInt(msg);          // change prostate state         GameManager.Instance.Prostate = (ProstateType)prostate;
+        var prostate = CustomMessages.Instance.ReadInt(msg);
+
+        // change prostate state
+        GameManager.Instance.Prostate = (ProstateType)prostate;
 
         // change prostate menu
         for (var i = 0; i < radialSet.Interactives.Count; i++)

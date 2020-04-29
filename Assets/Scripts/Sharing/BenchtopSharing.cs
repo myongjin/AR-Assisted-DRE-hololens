@@ -1,4 +1,5 @@
-﻿using HoloToolkit.Sharing;
+﻿
+using HoloToolkit.Sharing;
 using HoloToolkit.Unity;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,14 +20,19 @@ public class BenchtopSharing : MonoBehaviour
     {
         if (IsManipulated)
         {
+            //Send transform message
             CustomMessages.Instance.SendTransform(CustomMessages.TestMessageID.BenchtopTransform, transform.localPosition, transform.localRotation);
         }
     }
 
     private void processTransform(NetworkInMessage msg)
     {
-        long userID = msg.ReadInt64();         var position = CustomMessages.Instance.ReadVector3(msg);         var rotation = CustomMessages.Instance.ReadQuaternion(msg);
+        //from a message, read transfrom and set it
+        long userID = msg.ReadInt64();
+        var position = CustomMessages.Instance.ReadVector3(msg);
+        var rotation = CustomMessages.Instance.ReadQuaternion(msg);
         
+        //if it is not being manipulated then apply received position to a targetAligned object
         if (!IsManipulated)
         {
             transform.localPosition = position;

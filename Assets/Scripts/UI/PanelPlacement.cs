@@ -31,6 +31,10 @@ public class PanelPlacement : MonoBehaviour
             offset = Vector3.zero;
         }
 
+
+        //for debug
+        offset = labelOffset;
+
         transform.position = Vector3.Lerp(transform.position, benchtop.position + new Vector3(-0.33f, 0.12f, 0) + offset, speed);
     }
 }
